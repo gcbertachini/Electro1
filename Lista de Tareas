@@ -1,0 +1,41 @@
+Circuito 1: Autopolarización de Base (ver ejercicio 2.3)
+	Redactar descripción del circuito
+	Elegir un Transistor
+	Calcular los intervalos de las resistencias
+	Elegir las resistencias acorde a los intervalos
+	Calcular las transferencias esperadas
+	Calcular las impedancias de entrada y salida
+	Construir el circuito sobre protoboard
+	Medir la transferencia del circuito
+	Medir la impedancia de entrada del circuito
+	Medir la impedancia de salida del circuito (hay que ver cómo. Creo que nos habían dicho)
+	Poner en evidencia los resultados de las mediciones.
+		Curva teórica
+		¿Curva de simulación?
+		Curva de puntos de medición
+	Sugerir cambios a efectuar ceteris paribus
+	Medir efectos de los cambios si son posibles
+	Escribir conclusiones
+		¿Responde como debería?
+		¿Qué consecuencias tienen los cambios?
+
+Circuito 2: Limitador Básico (ver ejercicio 1.4)
+  Redactar descripción del circuito
+	Elegir un Zener (hay dos por modelo, así que creo que es mejor usar ambos)
+	Calcular los intervalos de la resistencia
+	Elegir las resistencia acorde al intervalo
+	Calcular la transferencia esperada
+	Calcular las impedancias de entrada y salida
+	Construir el circuito sobre protoboard
+	Medir la transferencia del circuito
+	Medir la impedancia de entrada del circuito
+	Medir la impedancia de salida del circuito (hay que ver cómo. Creo que nos habían dicho)
+	Poner en evidencia los resultados de las mediciones.
+		Curva teórica
+		¿Curva de simulación?
+		Curva de puntos de medición
+	Sugerir cambios a efectuar ceteris paribus
+	Medir efectos de los cambios si son posibles
+	Escribir conclusiones
+		¿Responde como debería?
+		¿Qué consecuencias tienen los cambios?
