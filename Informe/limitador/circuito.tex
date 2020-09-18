@@ -1,0 +1,17 @@
+\begin{circuitikz}[american voltages]
+    \draw
+    (0,0) node[ocirc](Vi-){}
+    (0,4) node[ocirc](Vi+){}
+    (5,0) node[ocirc](Vo-){}
+    (5,4) node[ocirc](Vo+){}
+    (Vi+) to[R=$R_s$,-*] ++(3,0)
+    to[zzD*, l=$D_z$] ++(0,-2)
+    (Vi-) to[short, -*] ++(3,0)
+    to[zzD*, l=$D_z$] ++(0,+2)
+    (Vo+) -- ++(-2,0)
+    (Vo-) -- ++(-2,0)
+    (Vi+) to[open, v=$V_i$] (Vi-)
+    (Vo+) to[open, v=$V_o$] (Vo-)
+    ;
+\end{circuitikz}
+\caption{Circuito Limitador Básico}

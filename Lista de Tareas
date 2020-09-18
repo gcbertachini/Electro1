@@ -20,7 +20,7 @@ Circuito 1: Autopolarización de Base (ver ejercicio 2.3)
 		¿Qué consecuencias tienen los cambios?
 
 Circuito 2: Limitador Básico (ver ejercicio 1.4)
-  Redactar descripción del circuito
+	Redactar descripción del circuito
 	Elegir un Zener (hay dos por modelo, así que creo que es mejor usar ambos)
 	Calcular los intervalos de la resistencia
 	Elegir las resistencia acorde al intervalo
