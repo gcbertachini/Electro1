@@ -8,6 +8,7 @@ __pycache__/
 .out
 .synctex.gz
 .toc
+.pdf
 
 # C extensions
 *.so
