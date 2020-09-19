@@ -1,20 +1,54 @@
-\chapter{Circuito Limitador Básico}
-El circuito limitador básico está compuesto por una resistencia en serie y dos Diodos Zener enfrentados, configurados como se observa en la figura \ref{fig:limitador_basico}.
+\chapter{Autopolarización de Base}
+\section{Análisis teórico}
+La segunda sección de este trabajo práctico consistirá en el análisis de la autopolarización de 
+base para un transistor bipolar de un juntura. Primeramente se estudiará la base del funcionamiento
+en dicha configuración para luego aplicarlo a diversos modelos de transistores provistos 
+por la cátedra. \par 
+El circuito inicial propuesto es el siguiente:
 
-\begin{figure}[ht]
+\begin{figure}[H]
+    \centering
     \begin{center}
-        \input{limitador/circuito.tex}
-        \label{fig:cambiar}
+        \includegraphics[width=0.3\textwidth]{polarizacion_de_base/Imagenes/circuito_polarizacion_base.png}
+        \label{circuito_ejercicio_2}
     \end{center}
+    \vspace{-8mm}
+    \caption{Circuito para Autopolarización de base}
 \end{figure}
+Considerando que tanto la base como el colector comparten un node común, el mismo se puede 
+separar como si fueran dos fuentes diferentes, una vez realizado este proceso se aplica 
+el teorema de Thevenin obteniéndose el equivalente:
+\begin{equation}
+    V_{th}= V_{cc} \hspace{20mm} R_{th}=R_B 
+    \label{eq_thevenin} 
+\end{equation}
+Aplicando las ecuaciones despejadas de [\ref{eq_thevenin}] en el circuito propuesto [\ref{circuito_ejercicio_2}]
+se simplifica el circuito a la expresión:
 
-\section{Funcionamiento}
-Para analizar la operación del circuito se puede pensar en los siguientes casos:
+\begin{figure}[H]
+    \centering
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{polarizacion_de_base/Imagenes/circuito_polarizacion_base_thevenin.png}
+        \label{circuito_ejercicio_2_thevenin}
+    \end{center}
+    \caption{Circuito para Autopolarización de base con Thevenin}
+\end{figure}
+Por otro lado, para este caso en particular se puede apreciar la presencia de la 
+resistencia en el emisor ()$R_E$), lo que nos permite protegernos de las grandes fluctuaciones 
+que puede tener la ganancia de corriente en un BJT ($h_{fe}$). De esta manera, se pueden 
+despejar los parámetros de la malla de salida en función de los parámetros de la malla 
+de entrada. Obteniéndose las siguientes expresiones: \par 
+\begin{equation}
+    \vspace{8mm}
+    I_C=\frac{V_{th}-V_{BE}}{R_E\left(\frac{1+h_{fe}}{h_{fe}}\right)+\frac{R_{th}}{h_{fe}}}
+    \label{eq_I_c}
+\end{equation}
 
-\begin{enumerate}
-    \item $|V_i| \leq V_f$
-    \item $V_f < |V_i| \leq V_z + V_f$
-    \item $V_z + V_f < |V_i|$ 
-\end{enumerate}
+\begin{equation}
+    V_{CE}=V_{CC}-I_C(R_C+R_E)
+    \label{eq_V_CE}
+\vspace{8mm}
+\end{equation}
 
-En el caso 1, la tensión de entrada sería suficiente para polarizar el Diodo zener a su 
+
+\section{Casos de aplicación}
