@@ -1,21 +1,10 @@
-\chapter{Circuito Limitador Básico}
-El circuito limitador básico está compuesto por una resistencia en serie y dos Diodos Zener enfrentados, configurados como se observa en la figura \ref{fig:limitador_basico}.
 
-\begin{figure}[ht]
     \begin{center}
-        \input{limitador/circuito.tex}
-        \label{fig:cambiar}
     \end{center}
 \end{figure}
 
-\section{Funcionamiento}
-Para analizar la operación del circuito se puede pensar en los siguientes casos:
+        \includegraphics[width=0.3\textwidth]{polarizacion_de_base/Imagenes/circuito_polarizacion_base_thevenin.png}
 
-\begin{enumerate}
-    \item $|V_i| \leq V_f$
-    \item $V_f < |V_i| \leq V_z + V_f$
-    \item $V_z + V_f < |V_i|$ 
-\end{enumerate}
 
 En el caso 1, la tensión de entrada sería suficiente para polarizar el Diodo zener a su 
 
@@ -30,4 +19,3 @@ En este caso se desea $I_c =  2mA$. Es necesario buscar en la hoja de datos del 
     $V_{BEon}$    & 0.58 & 0.66   & 0.7    \\ \hline
     $V_{CEsat}$   &      & 0.09   & 0.25  
     \end{tabular} \label{table:parametros transistor}
-    \end{table}
