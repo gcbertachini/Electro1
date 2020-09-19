@@ -17,4 +17,28 @@ Para analizar la operación del circuito se puede pensar en los siguientes casos
     \item $V_z + V_f < |V_i|$ 
 \end{enumerate}
 
-En el caso 1, la tensión de entrada sería suficiente para polarizar el Diodo zener a su 
+En el caso 1, la tensión no es suficiente ni siquiera para polarizar el Diodo 1 en directa y no fluirá la corriente. Por lo tanto, la tensión de la salida seguirá a la de entrada.
+
+En el caso 2, la tensión es suficiente para polarizar el Diodo 1 en directa, y el Diodo 2 en inversa. Sin embargo, esta polarización inversa no será suficiente para que el diodo entre en la zona de operación Zener, por lo cual la corriente que fluya será despreciable y la tensión de salida será aproximadamente igual a la de entrada.
+
+En el caso 3, la tensión ya es suficiente no solo para polarizar el Diodo 1 en directa, y el Diodo 2 operará en modo Zener. Cuando esto ocurre, el Diodo zener fija su tensión en $V_z$ y por lo tanto $V_o = V_z + V_f$.
+
+Como los diodos están enfrentados, la transferencia de la tensión será simétrica respecto el origen.
+
+\section{Selección de Componentes}
+
+Uno de los principales parámetros a considerar para el diseño es la máxima potencia que puede disipar el Diodo Zener. Con ese dato se calculó la corriente máxima que puede fluir a través del Diodo.
+
+Para conseguir este límite de corriente, conociendo la tensión máxima que se utilizará (10V) se calculó la $R_s$ mínima para fijar este límite.
+
+<<Fórmulas, Fórmulas, Fórmulas>>
+
+<<Tabla de Componentes elegidos, Diodos, Resistencias, etc.>>
+
+\section{Resultados}
+
+\subsection{Teóricos}
+<<Cálculo y diagrama de cómo quedaría teóricamente el circuito>>
+\subsection{Simulación}
+
+\subsection{Prácticos}
