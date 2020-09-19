@@ -1,0 +1,20 @@
+\chapter{Circuito Limitador Básico}
+El circuito limitador básico está compuesto por una resistencia en serie y dos Diodos Zener enfrentados, configurados como se observa en la figura \ref{fig:limitador_basico}.
+
+\begin{figure}[ht]
+    \begin{center}
+        \input{limitador/circuito.tex}
+        \label{fig:limitador_basico}
+    \end{center}
+\end{figure}
+
+\section{Funcionamiento}
+Para analizar la operación del circuito se puede pensar en los siguientes casos:
+
+\begin{enumerate}
+    \item $|V_i| \leq V_f$
+    \item $V_f < |V_i| \leq V_z + V_f$
+    \item $V_z + V_f < |V_i|$ 
+\end{enumerate}
+
+En el caso 1, la tensión de entrada sería suficiente para polarizar el Diodo zener a su 
