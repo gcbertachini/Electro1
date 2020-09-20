@@ -1,6 +1,8 @@
 \chapter{Circuito Limitador Básico}
 El circuito limitador básico está compuesto por una resistencia en serie y dos Diodos Zener enfrentados, configurados como se observa en la figura \ref{fig:limitador_basico}.
 
+Su propósito es limitar la tensión que emite un circuito de tal manera que este no exceda las tensiones aceptables para un circuito que se encuentre conectado a la salida del regulador. Por ejemplo, en algunos elementos electrónicos no es deseable que la señal de entrada supere los $3.3 \si{\volt}$, y este circuito lo protege de daños por excesos de tensión.
+
 \begin{figure}[ht]
     \begin{center}
         \input{limitador/circuito.tex}
@@ -8,7 +10,7 @@ El circuito limitador básico está compuesto por una resistencia en serie y dos
     \end{center}
 \end{figure}
 
-\section{Funcionamiento} \label{funcionamiento}
+\section{Análisis del circuito} \label{sec:limitador_analisis}
 Para analizar la operación del circuito se puede pensar en los siguientes casos:
 
 \begin{enumerate}
@@ -34,6 +36,8 @@ En el tercer caso, la tensión de entrada es suficiente para polarizar $D_{z1}$ 
         \label{fig:limitador_activado}
     \end{center}
 \end{figure}
+
+Debe notarse que, a causa de la impedancia del Diodo Zener en su operación como regulador, la tensión de salida no será constantemente $V_F+V_z$ sino que aumentará a medida que más corriente fluya a través del diodo.
 
 \section{Selección de Componentes}
 
@@ -88,9 +92,9 @@ La resistencia fue elegida de modo que el incremento en la caída de tensión, u
 los diodos estén en modo zener, sea bajo. Para las mediciones se utilizó una 
 resistencia de $100\Omega$.
 
-\section{Resultados}
+\section{Resolución}
 
-\subsection{Teóricos}
+\subsection{Teórica}
 Teniendo en cuenta los valores de los componentes, y conociendo el comportamiento ideal 
 del circuito, se sabe que cuando $|V_i|< V_F+V_z$ la tensión de salida sigue a la entrada.
 
@@ -106,37 +110,13 @@ Se utilizó la siguiente configuración para simular el comportamiento del circu
     \end{center}
 \end{figure}
 
-\subsection{Prácticos}
-<<Mostrar y explicar cómo medimos las cosas>>
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=12.7cm]{limitador/figures.jpg}
-        \caption{Resultados de las mediciones}
-    \end{center}
-\end{figure}
-
-\subsection{Ganancia de tensión}
-En esta sección se realizará el análisis de la ganancia de tensión del circuito 
-presentado en [\ref{fig:limitador_basico}]. \par 
-Se considerarán dos casos, con y sin $R_z$, cuyo valor teórico fue previamente presentado 
-en [\ref{tabla_limitador}].
-Se estudiará la ganancia de tensión sobre tres zonas bien diferenciadas como ya se 
-presento en \ref{funcionamiento}. Los gráficos obtenidos se presentan a continuación.
-
-
-
-
-
-
-\subsection{Implementación}
+\subsection{Práctica}
 Para medir el circuito limitador se implementó el mismo en la protoboard del 
 \textit{Electronic Explorer} como se puede ver en la imagen [\ref{implementacion_limitador}].
 Se utilizaron tres puntas para medir la tensión en la entrada, en la salida y sobre cada 
 diodo. \par 
 Se utilizaron scripts para realizar un \textit{DC Sweep} sobre el circuito en el rango 
 $\pm 9V$, limitiación impuesta por el equipo.
-
 
 \begin{figure}[H]
     \begin{center}
@@ -145,3 +125,40 @@ $\pm 9V$, limitiación impuesta por el equipo.
         \label{implementacion_limitador}
     \end{center}
 \end{figure}
+
+\section{Resultados}
+Los resultados de todos los desarrollos se representaron en la figura \ref{fig:lim_inout}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=12.7cm]{limitador/Imagenes/limitador_inout.png}
+        \caption{Tensión de salida contra tensión de entrada}
+        \label{fig:lim_inout}
+    \end{center}
+\end{figure}
+
+\section{Ganancia de tensión}
+Se realizó también el análisis de la ganancia de tensión del circuito limitador. 
+
+Se consideraron dos casos, con y sin $r_z$. En el primer caso se consideró la $r_z$ de la hoja de datos del fabricante, un valor máximo de $80 \si{\ohm}$.
+
+Como era de esperarse, se observa en la figura \ref{fig:lim_gain}, dentro de los dos primeros casos descriptos en la sección \ref{sec:limitador_analisis} la ganancia de tensión es unitaria en el análisis teórico. Sin embargo, fuera de estas regiones esta ganancia ya no es unitaria sino que es dependiente de la impedancia del diodo zener.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=12.7cm]{limitador/Imagenes/limitador_gain.png}
+        \caption{Ganancia de tensión contra tensión de entrada}
+        \label{fig:lim_gain}
+    \end{center}
+\end{figure}
+
+Debe notarse que el pico que se observa en el entorno de los $0 \si{\volt}$ en la ganancia de los resultados por medición física ocurre por problemas en los dispositivos de medición, como se observa en la figura \ref{fig:lim_inout}, que la tensión de salida no es nula cuando la entrada es nula.
+
+\section{Variaciones del Circuito}
+
+Utilizando una $R_s$ mayor es posible aplanar aún más la tensión de salida en las exteriores a la zona lineal del circuito.
+
+Al introducir una carga a este circuito, es necesario tener cuidado de que la corriente que fluye entre los diodos no sea tan baja de forma que no sea suficiente para activar el diodo Zener.
+
+\section{Conclusiones}
+Se puede observar de los resultados que la salida del circuito medido se encuentra dentro de los márgenes calculados con los datos provistos por la hoja de datos del fabricante. Se puede también observar cómo en la realidad, la entrada a la zona Zener no es abrupta, sino suave. Sin embargo, el aumento de tensión sigue en evidencia a causa de la resistencia del diodo en modo Zener.
