@@ -146,3 +146,5 @@ dmypy.json
 *.fdb_latexmk
 
 *.out
+
+*.pdf
