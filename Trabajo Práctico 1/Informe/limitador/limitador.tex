@@ -8,7 +8,7 @@ El circuito limitador básico está compuesto por una resistencia en serie y dos
     \end{center}
 \end{figure}
 
-\section{Funcionamiento}
+\section{Funcionamiento} \label{funcionamiento}
 Para analizar la operación del circuito se puede pensar en los siguientes casos:
 
 \begin{enumerate}
@@ -67,6 +67,7 @@ Finalmente los componentes y datos obtenidos fueron los siguientes:
             \hline
         \end{tabular}
         \caption{Restricciones de los componentes del circuito}
+        \label{tabla_limitador}
     \end{center}
 \end{table}
 
@@ -83,18 +84,22 @@ Finalmente los componentes y datos obtenidos fueron los siguientes:
     \end{center}
 \end{table}
 
-La resistencia fue elegida de modo que el incremento de tensión una vez que los diodos zener estén en modo zener sea bajo.
+La resistencia fue elegida de modo que el incremento en la caída de tensión, una vez que 
+los diodos estén en modo zener, sea bajo. Para las mediciones se utilizó una 
+resistencia de $100\Omega$.
 
 \section{Resultados}
 
 \subsection{Teóricos}
-Teniendo en cuenta los valores de los componentes, y conociendo el comportamiento ideal del circuito, se sabe que cuando $|V_i|< V_F+V_z$ la tensión de salida sigue a la entrada.
+Teniendo en cuenta los valores de los componentes, y conociendo el comportamiento ideal 
+del circuito, se sabe que cuando $|V_i|< V_F+V_z$ la tensión de salida sigue a la entrada.
 
 Fuera de esta región, la recta tendrá una pendiente de $\frac{r_z}{R_s+r_z}$.
 \subsection{Simulación}
 Se utilizó la siguiente configuración para simular el comportamiento del circuito
 
-\begin{figure}[ht]
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=9cm]{limitador/limitador_spice.png}
         \caption{Configuración del circuito en LTSpice XVII}
@@ -104,9 +109,39 @@ Se utilizó la siguiente configuración para simular el comportamiento del circu
 \subsection{Prácticos}
 <<Mostrar y explicar cómo medimos las cosas>>
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=12.7cm]{limitador/figures.jpg}
         \caption{Resultados de las mediciones}
+    \end{center}
+\end{figure}
+
+\subsection{Ganancia de tensión}
+En esta sección se realizará el análisis de la ganancia de tensión del circuito 
+presentado en [\ref{fig:limitador_basico}]. \par 
+Se considerarán dos casos, con y sin $R_z$, cuyo valor teórico fue previamente presentado 
+en [\ref{tabla_limitador}].
+Se estudiará la ganancia de tensión sobre tres zonas bien diferenciadas como ya se 
+presento en \ref{funcionamiento}. Los gráficos obtenidos se presentan a continuación.
+
+
+
+
+
+
+\subsection{Implementación}
+Para medir el circuito limitador se implementó el mismo en la protoboard del 
+\textit{Electronic Explorer} como se puede ver en la imagen [\ref{implementacion_limitador}].
+Se utilizaron tres puntas para medir la tensión en la entrada, en la salida y sobre cada 
+diodo. \par 
+Se utilizaron scripts para realizar un \textit{DC Sweep} sobre el circuito en el rango 
+$\pm 9V$, limitiación impuesta por el equipo.
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{limitador/Imagenes/foto_medicion_limitador.jpeg}
+        \caption{Implementación del circuito}
+        \label{implementacion_limitador}
     \end{center}
 \end{figure}
