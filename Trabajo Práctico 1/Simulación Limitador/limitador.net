@@ -1,0 +1,9 @@
+* C:\Users\ohvic\Documents\ITBA\Electrónica 1\Electro1\Trabajo Práctico 1\Simulación Limitador\limitador.asc
+V1 Vi 0 0
+R1 Vo Vi 100
+XU1 Vo N001 BZX3V6
+XU2 0 N001 BZX3V6
+.dc V1 -10 10 0.1
+.lib C:\Users\ohvic\Documents\ITBA\Electrónica 1\Electro1\Trabajo Práctico 1\Simulación Limitador\bzx55c3v6.txt
+.backanno
+.end

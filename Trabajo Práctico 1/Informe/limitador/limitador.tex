@@ -12,33 +12,101 @@ El circuito limitador básico está compuesto por una resistencia en serie y dos
 Para analizar la operación del circuito se puede pensar en los siguientes casos:
 
 \begin{enumerate}
-    \item $|V_i| \leq V_f$
-    \item $V_f < |V_i| \leq V_z + V_f$
-    \item $V_z + V_f < |V_i|$ 
+    \item $|V_i| \leq V_F$
+    \item $V_F < |V_i| \leq V_z + V_F$
+    \item $V_z + V_F < |V_i|$ 
 \end{enumerate}
 
-En el caso 1, la tensión no es suficiente ni siquiera para polarizar el Diodo 1 en directa y no fluirá la corriente. Por lo tanto, la tensión de la salida seguirá a la de entrada.
+Dado que los diodos están enfrentados, el comportamiento de este circuito será el mismo tanto para tensiones negativas como positivas.
 
-En el caso 2, la tensión es suficiente para polarizar el Diodo 1 en directa, y el Diodo 2 en inversa. Sin embargo, esta polarización inversa no será suficiente para que el diodo entre en la zona de operación Zener, por lo cual la corriente que fluya será despreciable y la tensión de salida será aproximadamente igual a la de entrada.
+En el primer caso, como la tensión no es suficiente ni siquiera para polarizar $D_{z1}$, no hay flujo de corriente, por lo tanto la tensión a la salida es $V_o = V_i$. En el segundo caso, la tensión es suficiente para polarizar en directa $D_{z1}$, y $D_{z2}$ se polariza en inversa, pero no alcanza $V_z$ para activarse el modo Zener. Se puede considerar entonces que, dado que la corriente en inversa es despreciable, no hay flujo de corriente y la tensión de salida copia a la de entrada.
 
-En el caso 3, la tensión ya es suficiente no solo para polarizar el Diodo 1 en directa, y el Diodo 2 operará en modo Zener. Cuando esto ocurre, el Diodo zener fija su tensión en $V_z$ y por lo tanto $V_o = V_z + V_f$.
+En el tercer caso, la tensión de entrada es suficiente para polarizar $D_{z1}$ en directa y en $D_{z2}$ superar la tensión de Zener. Cuando el circuito está operando en esta región, se lo puede interpretar como se observa en la figura \ref{fig:limitador_activado}. A este punto, la salida del circuito estará dada por la expresión \eqref{eqn:transferencia}.
 
-Como los diodos están enfrentados, la transferencia de la tensión será simétrica respecto el origen.
+\begin{equation}
+    \frac{V_o - (V_F + V_z)}{V_i - (V_F + V_z)}=\frac{r_z}{R_s + r_z}
+    \label{eqn:transferencia}
+\end{equation}
+
+\begin{figure}[ht]
+    \begin{center}
+        \input{limitador/circuito_zener_activado.tex}
+        \label{fig:limitador_activado}
+    \end{center}
+\end{figure}
 
 \section{Selección de Componentes}
 
-Uno de los principales parámetros a considerar para el diseño es la máxima potencia que puede disipar el Diodo Zener. Con ese dato se calculó la corriente máxima que puede fluir a través del Diodo.
+Se escogió trabajar con el diodo BZX55C3V6, el cual tiene una tensión típica de zener de $V_z = 3.6 \si{\volt}$ y una potencia máxima $P_{max} = 0.5 \si{\watt}$. A partir de estos datos se obtuvo que la corriente máxima que puede circular por el diodo.
 
-Para conseguir este límite de corriente, conociendo la tensión máxima que se utilizará (10V) se calculó la $R_s$ mínima para fijar este límite.
+\begin{equation}
+    I_{max}=\frac{P_{max}}{V_z}
+\end{equation}
 
-<<Fórmulas, Fórmulas, Fórmulas>>
+Luego, la $R_s$ que se debe utilizar estará dada por:
 
-<<Tabla de Componentes elegidos, Diodos, Resistencias, etc.>>
+\begin{equation}
+    R_{min}=\frac{V_i-(V_z+V_F)}{I_{max}}-r_z
+\end{equation}
+
+La mayor $R_{min}$ se obtuvo no tomando la caída de tensión en directa y la resistencia del diodo zener.
+
+\begin{equation}
+    R_{min}=\frac{V_i-V_z}{I_{max}}
+\end{equation}
+
+Finalmente los componentes y datos obtenidos fueron los siguientes:
+
+\begin{table}[ht]
+    \begin{center}
+        \begin{tabular}{|l|r|r|r|r|}
+            \hline
+            Diodo & $V_z$ & $P_{max}$ & $I_{max}$ & $R_{min}$ \\
+            \hline
+            BZX55C3V6 & $3.6 \si{\volt}$ & $0.5 \si{\watt}$ & $0.139 \si{\ampere}$ & $46.08 \si{\ohm}$ \\
+            \hline
+        \end{tabular}
+        \caption{Restricciones de los componentes del circuito}
+    \end{center}
+\end{table}
+
+\begin{table}[ht]
+    \begin{center}
+        \begin{tabular}{|l|r|r|r|r|}
+            \hline
+            Diodo & $V_z$ & $r_{\text{z max}}$ & $R_s$ & $V_{\text{F max}}$\\
+            \hline
+            BZX55C3V6 & $3.6 \si{\volt}$ & $80 \si{\ohm}$ & $100 \si{\ohm}$ & $1.5 \si{\volt}$ \\
+            \hline
+        \end{tabular}
+        \caption{Componentes Utilizados y Características}
+    \end{center}
+\end{table}
+
+La resistencia fue elegida de modo que el incremento de tensión una vez que los diodos zener estén en modo zener sea bajo.
 
 \section{Resultados}
 
 \subsection{Teóricos}
-<<Cálculo y diagrama de cómo quedaría teóricamente el circuito>>
+Teniendo en cuenta los valores de los componentes, y conociendo el comportamiento ideal del circuito, se sabe que cuando $|V_i|< V_F+V_z$ la tensión de salida sigue a la entrada.
+
+Fuera de esta región, la recta tendrá una pendiente de $\frac{r_z}{R_s+r_z}$.
 \subsection{Simulación}
+Se utilizó la siguiente configuración para simular el comportamiento del circuito
+
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[width=9cm]{limitador/limitador_spice.png}
+        \caption{Configuración del circuito en LTSpice XVII}
+    \end{center}
+\end{figure}
 
 \subsection{Prácticos}
+<<Mostrar y explicar cómo medimos las cosas>>
+
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[width=12.7cm]{limitador/figures.jpg}
+        \caption{Resultados de las mediciones}
+    \end{center}
+\end{figure}
