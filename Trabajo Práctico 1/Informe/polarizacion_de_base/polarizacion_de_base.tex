@@ -61,7 +61,8 @@ En este caso se desea $I_c =  2mA$. Es necesario buscar en la hoja de datos del 
     $\beta$       & 100  &        & 800    \\ \hline
     $V_{BEon}$    & 0.58 & 0.66   & 0.7    \\ \hline
     $V_{CEsat}$   &      & 0.09   & 0.25  
-    \end{tabular} \label{table:parametros transistor}
+    \end{tabular} 
+    \caption{}\label{table:parametros transistor}
 \end{table}
 
 Como condición de correcto funcionamiento se tiene la relación $V_{CE} < V_{CEsat}$ se aplica sobre la ecuación \ref{eq_V_CE}.
@@ -79,8 +80,8 @@ Ahora aplicando el peor caso posible para $V_{CEsat}$ de la tabla \ref{table:par
     4375< R_E + R_C
     \label{cota_numerica}
 \end{equation}
-Debido a la disponibilidad de elementos en este caso se selecciona $R_E = R_C = 1.8k\Omega$.
-Ya que se trata de valores de $h_{fe}$ altos la aproximación $\frac{1+h_{fe}}{h_{fe}}\approx 1$ es correcta.(INSERTAR CUENTA SI PINTA, OSEA HFE VARIA ENTRE 110 Y 800). Por lo tanto con los valores propuestos para $R_E$, la aproximación mencionada y la ecuación \ref{eq_I_c} se puede proponer lo siguiente.
+Debido a la disponibilidad de elementos en este caso se selecciona $R_E = R_C = 1.5k\Omega$.
+Ya que se trata de valores de $h_{fe}$ altos la aproximación $\frac{1+h_{fe}}{h_{fe}}\approx 1$ es correcta. Por lo tanto con los valores propuestos para $R_E$, la aproximación mencionada y la ecuación \ref{eq_I_c} se puede proponer lo siguiente.
 \begin{equation}
     \frac{V_{th} - V_{BEon}}{I_c} - R_E = \frac{R_B}{\beta}
     \label{eq_relacion_R_B}
@@ -92,10 +93,33 @@ Para este caso en especifico $h_{fe}$ presenta una gran variación, por lo tanto
 \begin{equation}
     258.5k\Omega < R_B < 1.88M\Omega
 \end{equation}
-
+Asumiendo un valor de $\beta \approx 330$, bajo el fundamento de que el transistor a usar es de la serie B, se decide sobre una $R_B = 780k\Omega$.
 Entonces los valores a utilizar son
 \begin{center}
-    $R_E = 1800\Omega$  $R_C = 1800\Omega$ $258.5k\Omega < R_B < 1.88M\Omega$
+    $R_E = 1500\Omega$  $R_C = 1500\Omega$ $R_B = 780 k\Omega$
 \end{center}
 
+A partir de estos nuevos parámetros, empleando la \ref{eq_I_c} y \ref{eq_V_CE} se encuentra el punto de polarización.
+\begin{equation}
+    I_{CQ} = 1.99mA   \hspace{5mm} V_{CEQ} = 3.01V
+    \label{eq_Punto_Q_teorico}
+\end{equation}
+
 \section{Casos de aplicación}
+
+Se busca en esta sección medir y contrastar el punto de polarización experimental y el calculado en la ecuación \ref{eq_Punto_Q_teorico}
+Luego de armar el circuito propuesto en la figura \ref{circuito_ejercicio_2}, se mide la caída de tensión en $R_C$ a fin de obtener $I_{CQ}$. A su vez se mide $V_{CEQ}$.
+Conociendo $I_{CQ}$ experimentalmente, y los valores nominales de $R_E$ y $R_B$ con la ecuación \ref{eq_I_c} se puede despejar $\beta$ para esta configuración.
+Los resultados se detallan en la tabla \ref{tabla_resultados_polarizacion}.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+          & $I_{CQ}$  & $V_{CEQ}$ & $V_{BEQ}$ & $\beta$ \\ \hline
+    $Q_1$ & $1,76mA$  & $3.65V$   & $0.66mV$  &         \\ \hline
+    $Q_2$ & $1.937mA$ & $3.21V$   & 0.662     &         \\ \hline
+    \end{tabular}
+    \caption{}\label{tabla_resultados_polarizacion}
+\end{table}
+Para contrastar la dispersión de valores entre transistores, se lleva a cabo la misma experiencia con otro transistor del mismo modelo.
