@@ -1,0 +1,15 @@
+#C1: Vcc
+#C2: VC
+#C3: VE
+#C4: VB
+#
+#M1: VCE
+#M2: IC
+#M3: VBE
+C1,Average, 9.0336 V
+C2,Average, 6.4286 V
+C3,Average, 2.6172 V
+C4,Average, 3.2796 V
+M1,Average, 3.8113 V
+M2,Average, 1.7367 mA
+M3,Average, 0.66239 V
