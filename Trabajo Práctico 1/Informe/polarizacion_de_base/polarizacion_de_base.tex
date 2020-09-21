@@ -109,7 +109,8 @@ A partir de estos nuevos parámetros, empleando la \ref{eq_I_c} y \ref{eq_V_CE} 
 
 Se busca en esta sección medir y contrastar el punto de polarización experimental y el calculado en la ecuación \ref{eq_Punto_Q_teorico}
 Luego de armar el circuito propuesto en la figura \ref{circuito_ejercicio_2}, se mide la caída de tensión en $R_C$ a fin de obtener $I_{CQ}$. A su vez se mide $V_{CEQ}$.
-Conociendo $I_{CQ}$ experimentalmente, y los valores nominales de $R_E$ y $R_B$ con la ecuación \ref{eq_I_c} se puede despejar $\beta$ para esta configuración.
+Conociendo $I_{CQ}$ experimentalmente, y los valores nominales de $R_E$ y $R_B$ con la ecuación \ref{eq_I_c} se puede despejar $\beta$ para esta configuración. También se corrobora esta cuenta calculando la corriente de base y dividiendo la corriente de colector por ella.
+Ambos procedimientos resultan en valores muy similares
 Los resultados se detallan en la tabla \ref{tabla_resultados_polarizacion}.
 
 \begin{table}[ht]
@@ -117,9 +118,15 @@ Los resultados se detallan en la tabla \ref{tabla_resultados_polarizacion}.
     \begin{tabular}{|l|l|l|l|l|}
     \hline
           & $I_{CQ}$  & $V_{CEQ}$ & $V_{BEQ}$ & $\beta$ \\ \hline
-    $Q_1$ & $1,76mA$  & $3.65V$   & $0.66mV$  &         \\ \hline
-    $Q_2$ & $1.937mA$ & $3.21V$   & 0.662     &         \\ \hline
+    $Q_1$ & $1,76 mA$ & $3.65 V$ & $0.66 mV$  & $236$   \\ \hline
+    $Q_2$ & $1.93 mA$ & $3.21 V$  & $0.66 mV$ & $278$   \\ \hline
     \end{tabular}
     \caption{}\label{tabla_resultados_polarizacion}
 \end{table}
 Para contrastar la dispersión de valores entre transistores, se lleva a cabo la misma experiencia con otro transistor del mismo modelo.
+Los resultados están dentro de lo esperado. En primer lugar la $V_{BEQ}$ se encuentra exactamente en el lugar marcado como típico por el fabricante para ambos casos.
+Respecto a la $I_{CQ}$ el transistor que cuenta con la $\beta$ mas parecida a la asumida en el diseño, presenta un valor experimental muy cercano al deseado. Mientras que para $Q_1$ está dentro de las posibilidades aceptables es mas lejano. 
+Al contar con la serie B del BC547, $\beta$ se encuentra correctamente dentro de las cotas previstas por el fabricante.
+Se ajunta a continuación una representación gráfica mediante las curvas del fabricante del punto de trabajo del transistor para el diseño requerido.
+
+INSERTAR PUNTO Q CON HOJAS DEL FABIRCANTE.
