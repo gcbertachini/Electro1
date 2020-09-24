@@ -140,9 +140,16 @@ Los resultados de todos los desarrollos se representaron en la figura \ref{fig:l
 \section{Ganancia de tensión}
 Se realizó también el análisis de la ganancia de tensión del circuito limitador. 
 
-Se consideraron dos casos, con y sin $r_z$. En el primer caso se consideró la $r_z$ de la hoja de datos del fabricante, un valor máximo de $80 \si{\ohm}$.
+Se consideraron dos casos, con y sin $r_z$. En el primer caso, se consideró la $r_z$ de la hoja de datos del fabricante, que toma un valor máximo de $80 \si{\ohm}$.
 
-Como era de esperarse, se observa en la figura \ref{fig:lim_gain}, dentro de los dos primeros casos descriptos en la sección \ref{sec:limitador_analisis} la ganancia de tensión es unitaria en el análisis teórico. Sin embargo, fuera de estas regiones esta ganancia ya no es unitaria sino que es dependiente de la impedancia del diodo zener.
+Como era de esperarse, 
+dentro de los dos primeros casos descriptos en la sección 
+\ref{sec:limitador_analisis} la ganancia de tensión es unitaria
+ en el análisis teórico. Sin embargo, fuera de estas regiones
+  esta ganancia ya no es unitaria sino que es dependiente de
+   la impedancia del diodo zener. Esto se puede observar 
+   claramente en la
+    figura \ref{fig:lim_gain}.
 
 \begin{figure}[H]
     \begin{center}
@@ -152,7 +159,12 @@ Como era de esperarse, se observa en la figura \ref{fig:lim_gain}, dentro de los
     \end{center}
 \end{figure}
 
-Debe notarse que el pico que se observa en el entorno de los $0 \si{\volt}$ en la ganancia de los resultados por medición física ocurre por problemas en los dispositivos de medición, como se observa en la figura \ref{fig:lim_inout}, que la tensión de salida no es nula cuando la entrada es nula.
+Debe notarse que el pico que se observa en el entorno
+ de los $0 \si{\volt}$ en la ganancia, 
+para el caso de las mediciones, se debe a que los valores medidos 
+  son pequeños tal que la función empieza a diverger, debido a que se está dividiendo por 
+  cero. En realidad, la ganancia es unitaria siempre que el transistor no esté polarizado, 
+  incluído a $0 \si{\volt}$ donde habría tensión nula tanto a la salida como a la entrada.
 
 \section{Variaciones del Circuito}
 
