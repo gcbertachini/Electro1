@@ -1,0 +1,32 @@
+1. Introducción:
+  a. Par Darlington:
+    i. Características DC
+   ii. Características AC
+  b. MOSFET: Carga Activa: ¿Por qué Widlar? Comparar con carga pasiva
+    i. Características DC
+   ii. Características AC
+
+2. Análisis Teórico:
+  a. Polarización
+  b. Parámetros AC
+  c. Circuito Incremental
+  d. Impedancias de Entrada y Salida
+  e. Respuesta en Frecuencia
+    i. Bajas Frecuencias (C externas)
+   ii. Altas Frecuencias (C internas)
+    
+3. Simulaciones: (no olvidar análisis estadístico)
+  a. Polarización
+  b. Parámetros AC
+  c. Circuito Incremental
+  d. Impedancias de Entrada y Salida
+  e. Respuesta en Frecuencia
+
+4. Mediciones y Resultados
+  a. Av
+  b. Avs
+  c. Ai
+  d. Ria
+  e. Roa
+
+5. Conclusiones
