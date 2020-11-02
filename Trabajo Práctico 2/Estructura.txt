@@ -22,7 +22,7 @@
   d. Impedancias de Entrada y Salida
   e. Respuesta en Frecuencia
 
-4. Mediciones y Resultados
+4. Mediciones y Resultados: Comparar Teórico, Simulado y Medido
   a. Av
   b. Avs
   c. Ai
@@ -30,3 +30,7 @@
   e. Roa
 
 5. Conclusiones
+  a. Ventajas del Circuito
+  b. Desventajas del Circuito
+  c. Usos prácticos
+  
