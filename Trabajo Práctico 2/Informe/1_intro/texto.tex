@@ -18,12 +18,21 @@ En este caso, se estudió el comportamiento de un Par Darlington con una carga a
             ;
         \end{circuitikz}
         \caption{Par Darlington}
+        \label{fig:darlington}
     \end{center}
 \end{figure}
 
-El Par Darlington consiste en una conexión en cascada entre dos transistores bipolares de juntura (BJT de sus siglas en inglés). Al conectar el emisor del primer transistor a la base del segundo, la corriente entrante a la base del primer transistor es multiplicada por las ganancias de ambos transistores (aproximadamente)
+El Par Darlington consiste en una configuración en Colector Común entre dos Transistores Bipolares de Juntura (BJT) y en cascada como se muestra en la figura \ref{fig:darlington}. Al conectar el emisor de $Q_1$ a la base de $Q_2$ la ganancia total de corriente de este circuito es el producto de las ganancias de corriente de cada transistor de manera que:
+\begin{equation}
+    I_{E2} = (\beta_1 + 1 )(\beta_2 + 1) I_{B1}
+\end{equation}
+donde $\beta_i$ es la ganancia de corriente de cada BJT.
+
+Para este trabajo se utilizaron dos transistores BC547 con características \dots
 
 \section{Espejo de Corriente MOSFET}
+
+El Espejo de Corriente permite forzar la corriente a la salida del dispositivo a una corriente de referencia determinada. Para este trabajo se lo implemento con un par de transistores n-mos de enriquecimiento, configurados como en la figura \ref{fig:nmos_mirror}.
 
 \begin{figure}[ht]
     \begin{center}
@@ -33,13 +42,67 @@ El Par Darlington consiste en una conexión en cascada entre dos transistores bi
             (-1.5,0) node[nigfete, xscale=-1](Q3){\scalebox{-1}[1]{$Q_3$}}
             (1.5,0) node[nigfete](Q4){$Q_4$}
             (Q3.G) -- (Q4.G)
-            (1.5,3) node[vcc]{$V_{DD}$} to[R=$R_{ref}$, i=$I_{ref}$] (Q4.D) 
-            (-1.5,3) node[anchor=east]{$V_o$} to[short,o-, i=$I_o$] (Q3.D)  
-            (Q4.D) -| (0,-0.25)
+            (1.5,2.5) node[vcc]{$V_{DD}$} to[R=$R_{ref}$, i=$I_{ref}$] (Q4.D) 
+            (-1.5,2.5) node[anchor=east]{$V_o$} to[short,o-, i=$I_o$] (Q3.D)  
+            (Q4.D) -| (0,-0.25) node[anchor=north](B){}
             (Q3.S) -- ++(0,-0.5) node[ground]{}
             (Q4.S) -- ++(0,-0.5) node[ground]{}
             ;
         \end{circuitikz}
-        \caption{Par Darlington}
+        \caption{Espejo de Corriente n-MOSFET}
+        \label{fig:nmos_mirror}
     \end{center}
 \end{figure}
+
+A partir de la ecuación de Sah \eqref{eq:sah} para cada uno de los transistores se puede encontrar la razón entre la corriente de salida y de referencia.
+\begin{equation}
+    I_D = K' \frac{W}{L}\cdot (V_{GS}-V_{TH})^2
+    \label{eq:sah}
+\end{equation}
+
+Considerando que por la configuración la tensión $V_{GS}$ será la misma para ambos transistores, y aproximando que, dado que se utilizarán transistores del mismo modelo, se puede aproximar que 
+
+\begin{equation}
+    I_o = \frac{(W/L)_3}{(W/L)_4} \cdot I_{ref}
+\end{equation}
+
+Por otro lado, puede diseñarse la $I_{ref}$ recorriendo la malla de $Q_4$
+
+\begin{equation}
+    I_{ref}=\frac{V_{DD}-V_{GS}}{R_{ref}}
+\end{equation}
+
+\section{Par Darlington con Carga Activa}
+Finalmente, el circuito a diseñar y analizar resulta en el mostrado en la figura \ref{fig:circuito}
+
+\begin{figure}[ht]
+    \begin{center}
+        \begin{circuitikz}
+            \ctikzset{resistors/scale=0.5};
+            \draw
+            (7,2.5) node[anchor=west](vo){$v_o$}
+            (11,6.5) node[vcc](Vcc){$V_{CC}$}
+            (5.5,5) node[npn](Q1){$Q_1$}
+            (7,4) node[npn](Q2){$Q_2$}
+            (7,1) node[nigfete, xscale=-1](Q3){\scalebox{-1}[1]{$Q_3$}}
+            (10,1) node[nigfete](Q4){$Q_4$}
+            (Q3.S) node[ground]{} (Q4.S) node[ground]{}
+            (Q1.E) |- (Q2.B)
+            (Q1.C) |- (Vcc) (Q2.C) |- (Vcc)
+            (Q4.D) to[R=$R_{ref}$] ++(0,4.75)
+            (Q4.D) -| (8.5,0.75) (Q3.G) to[short,-*] (8.5,0.75) (Q4.G) to[short,-*] (8.5,0.75)
+            (Q1.B) to[R=$R_B$,*-] ++(0,1.5) --(Vcc)
+            (Q1.B) to[C=$C_i$] ++(-1,0) to[R=$R_s$] ++(-2,0) to[sV,l=$v_i$] ++(0,-2) node[ground]{}
+            (Q2.E) to[short,-o] (7,2.5) (Q3.D) to[short] (7,2.5)
+            (7,2.5) to[short] ++(-2,0) to[R=$R_L$] ++(0,-2) node[ground]{}
+            ;
+        \end{circuitikz}
+        \caption{Par Darlington con Carga Activa}
+        \label{fig:circuito}
+    \end{center}
+\end{figure}
+
+
+\section{Limitaciones de la Plataforma de Medición}
+
+Dado que el \textit{Electronics Explorer} sobre el cual se hicieron las mediciones tiene un límite de corriente de $1.5 \si{\ampere}$ en las salidas programables, se diseñaron los circuitos de forma de no saturar al dispositivo. La salida $V_{cc}$ no tiene limitación de corriente, pero la tensión es muy baja.
