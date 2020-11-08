@@ -1,0 +1,105 @@
+\chapter{Análisis Teórico}
+Se analizó el comportamento del circuito a pequeñas señales.
+\section{Circuito de Polarización}
+Como primer paso se analizó la polarización del circuito, ambos en su forma de carga pasiva (figura \ref{fig:pol_pasivo}) y activa (figura \ref{fig:pol_activo}).
+
+\begin{figure} [ht]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{circuitikz}
+            \ctikzset{resistors/scale=0.5};
+            \draw
+            (7,6.5) node[vcc](Vcc){$V_{CC}$}
+            (5.5,5) node[npn](Q1){$Q_1$}
+            (7,4) node[npn](Q2){$Q_2$}
+            (Q1.E) |- (Q2.B)
+            (Q1.C) |- (Vcc) (Q2.C) |- (Vcc)
+            (Q1.B) to[R=$R_B$] ++(0,1.5) --(Vcc)
+            (Q2.E) to[R=$R_E$] ++(0,-1) node[ground]{}
+            ;
+        \end{circuitikz}
+        \caption{Circuito de Polarización con Carga Pasiva}
+        \label{fig:pol_pasivo}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{circuitikz}
+            \ctikzset{resistors/scale=0.5};
+            \draw
+            (7,6.5) node[vcc](Vcc){$V_{CC}$}
+            (5.5,5) node[npn](Q1){$Q_1$}
+            (7,4) node[npn](Q2){$Q_2$}
+            (Q1.E) |- (Q2.B)
+            (Q1.C) |- (Vcc) (Q2.C) |- (Vcc)
+            (Q1.B) to[R=$R_B$] ++(0,1.5) --(Vcc)
+            (Q2.E) to[I, l=$I_{ref}$] ++(0,-1) node[ground]{}
+            ;
+        \end{circuitikz}
+        \caption{Circuito de Polarización con Carga Activa}
+        \label{fig:pol_activo}
+    \end{minipage}
+\end{figure}
+
+\subsection{Carga Pasiva}
+En el circuito con Carga Pasiva, se resolvió analizando las mallas de entrada de los transistores.
+
+\begin{align*}
+    & V_{CC}-I_{B1}R_{B}-V_{BEon1}-V_{BEon2}-I_{E2}R_{E}=0 \\
+    & I_{E2} = \left(1 + h_{FE1}\right)\left(1 + h_{FE2}\right) I_{B1} \\
+    \Rightarrow & I_{E2} = \frac{V_{CC}-V_{BEon1}-V_{BEon2}}{R_E+\frac{R_B}{\left(1 + h_{FE1}\right)\left(1 + h_{FE2}\right)}}
+\end{align*}
+
+Considerando que la influencia de de $R_B$ será despreciable frente a la de $R_E$, y que ambos transistores tienen la misma $V_{BEon}$ se puede aproximar \eqref{eq:pol_I_E2}. Luego se pueden obtener las $I_{CQ}$ de cada transistor.
+
+\begin{equation}
+    I_{E2} \approx \frac{V_{CC}-2V_{BEon}}{R_E}
+    \label{eq:pol_I_E2}
+\end{equation}
+
+\begin{align}
+    I_{CQ2} &= \frac{h_{FE2}}{h_{FE2}+1}\cdot I_{E2} \label{eq:icq2} \\ 
+    I_{CQ1} &= \frac{h_{FE1}}{h_{FE1}+1}\cdot \frac{1}{h_{FE2}+1}\cdot I_{E2} \label{eq:icq1}
+\end{align}
+
+Recorriendo las mallas de salida se obtuvieron las $V_{CEQ}$ de cada transistor.
+
+\begin{align}
+    V_{CEQ2} &= V_{CC} - I_{E2} R_E \\
+    V_{CEQ1} &= V_{CC} - V_{BEon} - I_{E2} R_E
+\end{align}
+
+\subsection{Carga Activa}
+
+A partir de la ecuación de Sah \eqref{eq:sah} para cada uno de los transistores se puede encontrar la razón entre la corriente de salida y de referencia.
+\begin{equation}
+    I_D = K' \frac{W}{L}\cdot (V_{GS}-V_{TH})^2
+    \label{eq:sah}
+\end{equation}
+
+Considerando que por la configuración la tensión $V_{GS}$ será la misma para ambos transistores, y aproximando que, dado que se utilizarán transistores del mismo modelo, se puede aproximar que 
+
+\begin{equation}
+    I_o = \frac{(W/L)_3}{(W/L)_4} \cdot I_{ref}
+\end{equation}
+
+Por otro lado, puede diseñarse la $I_{ref}$ recorriendo la malla de $Q_4$
+
+\begin{equation}
+    I_{ref}=\frac{V_{DD}-V_{GS}}{R_{ref}}
+    \label{eq:I_ref}
+\end{equation}
+
+Luego, los resultados de \eqref{eq:I_ref} pueden utilizarse en \eqref{eq:pol_I_E2}, \eqref{eq:icq2} y \eqref{eq:icq1}.
+
+\section{Parámetros de Pequeña Señal}
+Lorem ipsum
+\section{Circuito Incremental}
+Lorem ipsum
+\subsection{Ganancia de Tensión}
+\subsection{Ganancia de Corriente}
+Lorem ipsum
+\subsection{Impedancias de Entrada y Salida}
+Lorem ipsum
+\subsection{Respuesta en Frecuencia}
+Lorem ipsum
