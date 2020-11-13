@@ -1,0 +1,17 @@
+* C:\Users\ohvic\Documents\ITBA\Electrónica 1\Electro1\Trabajo Práctico 2\LTSPICE\carga_activa\polasc.asc
+Q1 Vcc vin N001 0 BC547B
+Q2 Vcc N001 vout 0 BC547B
+R1 Vcc vin 1k
+Vcc Vcc 0 9
+Rref Vcc N002 180
+M1 N002 N002 0 0 BS170
+M2 vout N002 0 0 BS170
+.model NPN NPN
+.model PNP PNP
+.lib C:\Users\ohvic\Documents\LTspiceXVII\lib\cmp\standard.bjt
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\ohvic\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 0 10 1
+.backanno
+.end

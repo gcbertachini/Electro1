@@ -42,7 +42,7 @@ Como primer paso se analizó la polarización del circuito, ambos en su forma de
 \end{figure}
 
 \subsection{Carga Pasiva}
-En el circuito con Carga Pasiva, se resolvió analizando las mallas de entrada de los transistores.
+En el circuito con Carga Pasiva, se resolvió analizando las mallas de entrada de los transistores. En ambos circuitos, para tener una comparación justa, se escogieron valores de componentes de forma que el punto de polarización de los transistores sean iguales.
 
 \begin{align*}
     & V_{CC}-I_{B1}R_{B}-V_{BEon1}-V_{BEon2}-I_{E2}R_{E}=0 \\
@@ -102,34 +102,57 @@ También a partir de la ecuación	 \eqref{eq:sah} se puede obtener las tensiones
 
 \section{Parámetros de Pequeña Señal}
 
-[Versión Giacoletto] Se estimaron los parámetros de pequeña señal de cada transistor de acuerdo al modelo de Giacoletto. 
+Se estimaron los parámetros de pequeña señal de cada transistor de acuerdo al modelo de híbrido en la configuración de seguidor de emisor.
 
 \begin{align}
-    \hat{g_m} &= I_{CQ}/V_T  \\
-    \hat{r_\pi} &= (\beta+1)/g_m \\
-    \hat{r_{ce}} &= V_A/I_{CQ}
+    \hat{h_{fe}} &\approx \beta \\
+    \hat{h_{ie}} &\approx \hat{r_\pi} = (\beta+1) V_T/I_{CQ} \\
+    \hat{h_{oe}} &\approx \hat{r_{ce}}^{-1} = I_{CQ}/V_A
 \end{align}
 
-Para simplificar el desarrollo se aproximó que $r_x \approx 0$ y $r_\mu \approx \infty$, de modo que el modelo del circuito incremental utilizado será el de la figura
+% Para simplificar el desarrollo se aproximó que $r_x \approx 0$ y $r_\mu \approx \infty$, de modo que el modelo del circuito incremental utilizado será el de la figura
 
-\begin{figure}[ht]
+\begin{figure} [ht]
     \centering
-    \begin{circuitikz}
-        \draw (0,0) node[anchor = east](ei){$e$} to[short,o-o] ++(6,0) node[anchor=west](eo){$e$};
-        \draw (0,2) node[anchor = east](b){$b$} to[short,o-] ++(1,0) to[R, l=$r_\pi$,-*] ++(0,-2);
-        \draw (6,2) node[anchor = west](c){$c$} to[short,o-] ++(-1,0) to[R, l=$r_o$,-*] ++(0,-2);
-        \draw (5,2) to[short,*-] ++(-2,0) to[I,l=$g_m v_{be}$,-*] ++(0,-2);
-    \end{circuitikz}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{circuitikz}
+            \ctikzset{resistors/scale=0.5, capacitors/scale=0.5};
+            \draw (0,0) node[anchor = east](ei){$e$} to[short,o-o] ++(7,0) node[anchor=west](eo){$e$};
+            \draw (0,2) node[anchor = east](b){$b$} to[short,o-] ++(1,0) to[R, l=$h_{ie}$,-*] ++(0,-2);
+            \draw (1,2) to[short,*-] ++(1,0) to[C,l=$C_{eb}$,-*] ++(0,-2);
+            \draw (7,2) node[anchor = west](c){$c$} to[short,o-] ++(-1,0) to[R, l=$1/h_{oe}$,-*] ++(0,-2);
+            \draw (2,2) to[C,l=$C_{cb}$,*-*] ++(2,0);
+            \draw (6,2) to[short,*-] ++(-2,0) to[cI,l=$h_{fe} i_b$,-*] ++(0,-2);
+        \end{circuitikz}
+        \caption{Modelo incremental en Emisor Común}
+        \label{fig:inc_ec}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{circuitikz}
+            \ctikzset{resistors/scale=0.5, capacitors/scale=0.5};
+            \draw (0,0) node[anchor = east](ci){$c$} to[short,o-o] ++(6,0) node[anchor=west](co){$c$};
+            \draw (0,2) node[anchor = east](b){$b$} to[short,o-] ++(1,0) to[C, l=$C_{cb}$,-*] ++(0,-2);
+            \draw (1,2) to[short,*-] ++(0,1) to[C,l=$C_{eb}$] ++(2,0) to[short,-*] ++(0,-1);
+            \draw (6,2) node[anchor = west](e){$e$} to[short,o-] ++(-1,0) to[R, l=$1/h_{oe}$,-*] ++(0,-2);
+            \draw (1,2) to[R,l=$h_{ie}$,*-*] ++(2,0);
+            \draw (3,0) to[cI,l_=$h_{fe} i_b$,-*] ++(0,2) to[short,-*] ++(2,0);
+        \end{circuitikz}
+        \caption{Modelo incremental en Colector Común}
+        \label{fig:inc_cc}
+    \end{minipage}
 \end{figure}
 
-Antes de analizar el modelo de pequeña señal del par Darlington en configuración de seguidor de emisor, es necesario encontrar los parámetros del modelo híbrido, dadas por las siguientes ecuaciones..
-%% Estaba Giacoletto, pero es mas facil las cuentas con hibrido. Nose si afecta el cambio
+% Antes de analizar el modelo de pequeña señal del par Darlington en configuración de seguidor de emisor, es necesario encontrar los parámetros del modelo híbrido, dadas por las siguientes ecuaciones..
+% Estaba Giacoletto, pero es mas facil las cuentas con hibrido. Nose si afecta el cambio
 % Necesitamos trabajar con Giacoletto porque tenemos que ver las capacitancias parásitas para la alta frecuencia. Además se puede trabajar directamente con los resultados de las tablas.
-\begin{align}
-    hie = \frac{\beta V_T}{I_{C1}} \\
-    hfe = \approx \beta \\
-    \frac{1}{hoe_1} = \frac{V_{A}}{I_{CQ}} \\
-\end{align}
+
+% \begin{align}
+%     hie = \frac{\beta V_T}{I_{C1}} \\
+%     hfe = \approx \beta \\
+%     \frac{1}{hoe_1} = \frac{V_{A}}{I_{CQ}} \\
+% \end{align}
 De las cuales a partir de la polarizacion previamente calculada, se obtienen los siguientes valores.
 
 \begin{table}
@@ -145,8 +168,10 @@ De las cuales a partir de la polarizacion previamente calculada, se obtienen los
 
 %%  MEJORAR IMPEDANCIA DE SALIDA DE FUENTE DE CORRIENTE
 
-A su vez es necesario calcular la impedencia de salida de la fuente de corriente. Al ser esta la carga activa, su impedancia de salida es la que vera el par Darlington en reemplazo de la resistencia $R_E$.
-Ya que es aqui especificamente donde se ve la mejora al circuito basico, es primordial tener un valor numerico para resaltarla. Como se trata de una fuente espejo con MOS-FET, se estima la impedancia de salida con la expresion de la ecuacion \ref{eq:imp salida fte corriente}.
+% A su vez es necesario calcular la impedencia de salida de la fuente de corriente. Al ser esta la carga activa, su impedancia de salida es la que vera el par Darlington en reemplazo de la resistencia $R_E$.
+% Ya que es aqui especificamente donde se ve la mejora al circuito basico, es primordial tener un valor numerico para resaltarla. Como se trata de una fuente espejo con MOS-FET, se estima la impedancia de salida con la expresion de la ecuacion \ref{eq:imp salida fte corriente}.
+Dado que el espejo de corriente tiene como referencia una corriente continua, su influencia sobre el circuito incremental estará modelado como una impedancia, la cual será la impedancia de salida del espejo de corriente.
+
 \begin{equation}
     R_O = \frac{V_A}{I_0} 
     \label{eq:imp salida fte corriente}
