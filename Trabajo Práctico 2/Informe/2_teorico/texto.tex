@@ -102,22 +102,74 @@ También a partir de la ecuación	 \eqref{eq:sah} se puede obtener las tensiones
 
 \section{Parámetros de Pequeña Señal}
 
-Se estimaron los parámetros de pequeña señal del para modelo de Giacoletto:
+Antes de analizar el modelo de pequeña señal del par Darlington en configuración de seguidor de emisor, es necesario encontrar los parámetros del modelo híbrido, dadas por las siguientes ecuaciones..
+%% Estaba Giacoletto, pero es mas facil las cuentas con hibrido. Nose si afecta el cambio
+\begin{align}
+    hie = \frac{\beta V_T}{I_{C1}} \\
+    hfe = \approx \beta \\
+    \frac{1}{hoe_1} = \frac{V_{A}}{I_{CQ}} \\
+\end{align}
+De las cuales a partir de la polarizacion previamente calculada, se obtienen los siguientes valores.
 
 \begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
-        
+     & $Q_1$ & $Q_2$ \\
+    $hie$           &    &     \\
+    $hfe$           &    &      \\
+    $\frac{1}{hoe}$ &    &      \\
     \end{tabular}
 \end{table}
 
 
+%%  MEJORAR IMPEDANCIA DE SALIDA DE FUENTE DE CORRIENTE
+
+A su vez es necesario calcular la impedencia de salida de la fuente de corriente. Al ser esta la carga activa, su impedancia de salida es la que vera el par Darlington en reemplazo de la resistencia $R_E$.
+Ya que es aqui especificamente donde se ve la mejora al circuito basico, es primordial tener un valor numerico para resaltarla. Como se trata de una fuente espejo con MOS-FET, se estima la impedancia de salida con la expresion de la ecuacion \ref{eq:imp salida fte corriente}.
+\begin{equation}
+    R_O = \frac{V_A}{I_0} 
+    \label{eq:imp salida fte corriente}
+\end{equation}
+Dada la polariacion especificada, se haya valor numerico para $R_O =XX \Omega$.
+
 \section{Circuito Incremental}
-Lorem ipsum
+
+Se reemplazan los transistores bipolares por su modelo híbrido para la pequeña señal en las figuras \ref{fig:circuito_pasivo} y \ref{fig:circuito}. Para esta ultima se considera la impedancia de salida ($R_O$) de la fuente espejo, en vez de la resistencia $R_E$.
+Se llega de esta manera en el circuito incremental pertinente, ilustrado en la figura \ref{fig:circuito incremental darlington}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{2_teorico/figs/Incremental Darlington.png}
+    \caption{Circuito Incremental}
+    \label{fig:circuito incremental darlington}
+\end{figure}
+En donde $R_X$ dependiendo del análisis se considera $R_E$ con carga pasiva y $R_O$ con carga activa. 
+
+
+\subsection{Impedancia Entrada}
+
+La expresion para la impedancia de entrada se obtiene a traves de un pasaje de corriente, al considerarse $i_{b2} = (1+hfe_1)i_{b1}$.
+\begin{equation}
+    R_i = hie_1 + (1+hfe_1)hie_2 + (1+hfe_1)(1+hfe_2)R_D
+    \label{eq:Impedancia de entrada}
+\end{equation}
+
 \subsection{Ganancia de Tensión}
+A partir de la ecuacion \ref{eq:Impedancia de entrada}, se desarrolla la ganancia $\Delta_V$.
+\begin{align}
+    \Delta_V = \frac{V_o}{V_i} = \frac{V_o}{i_{b2}} \frac{i_{b2}}{i_{b1}} \frac{i_{b1}}{V_i} \\
+    \Delta_V = \frac{R_D(1+hfe_1)(1+hfe_2)}{R_D(1+hfe_1)(1+hfe_2) + hie_1 + hie_2(1+hfe_2)}
+\end{align}
+Sacando factor comun se obtiene:
+\begin{equation}
+    \Delta_V = \frac{1}{\frac{hie_1 + hie_2(1+hfe_2)}{R_D(1+hfe_1)(1+hfe_2)}{R_D(1+hfe_1)(1+hfe_2)}}
+\end{equation}
+Como se tiene que la ganancia ideal de un seguidor de emisor es $\Delta_V \approx 1$...
+
+
 \subsection{Ganancia de Corriente}
 Lorem ipsum
-\subsection{Impedancias de Entrada y Salida}
+\subsection{Impedancia de Salida}
 Lorem ipsum
 \subsection{Respuesta en Frecuencia}
 Lorem ipsum
@@ -151,3 +203,8 @@ A partir de la expresión anterior se consideró entonces una cota máxima de la
     I_{ref} < 0.75 \si{\ampere}
     \label{eq:Iref}
 \end{equation}
+
+\section{Comparacion Teorica Carga activa y pasiva}
+
+%%Nose donde ponerlo, pero estimo que debe ir en esta seccion. Es mostrar como con la RO se obtiene mejor AV
+%% Y la relacion de compromiso con RE(corriente y ganancia), lo que dijo en clase.
