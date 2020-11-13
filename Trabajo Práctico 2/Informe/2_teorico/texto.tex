@@ -66,7 +66,7 @@ Recorriendo las mallas de salida se obtuvieron las $V_{CEQ}$ de cada transistor.
 
 \begin{align}
     V_{CEQ2} &= V_{CC} - I_{E2} R_E \\
-    V_{CEQ1} &= V_{CC} - V_{BEon} - I_{E2} R_E
+    V_{CEQ1} &= V_{CC} - I_{E2} R_E - V_{BEon} 
 \end{align}
 
 \subsection{Carga Activa}
@@ -102,8 +102,29 @@ También a partir de la ecuación	 \eqref{eq:sah} se puede obtener las tensiones
 
 \section{Parámetros de Pequeña Señal}
 
+[Versión Giacoletto] Se estimaron los parámetros de pequeña señal de cada transistor de acuerdo al modelo de Giacoletto. 
+
+\begin{align}
+    \hat{g_m} &= I_{CQ}/V_T  \\
+    \hat{r_\pi} &= (\beta+1)/g_m \\
+    \hat{r_{ce}} &= V_A/I_{CQ}
+\end{align}
+
+Para simplificar el desarrollo se aproximó que $r_x \approx 0$ y $r_\mu \approx \infty$, de modo que el modelo del circuito incremental utilizado será el de la figura
+
+\begin{figure}[ht]
+    \centering
+    \begin{circuitikz}
+        \draw (0,0) node[anchor = east](ei){$e$} to[short,o-o] ++(6,0) node[anchor=west](eo){$e$};
+        \draw (0,2) node[anchor = east](b){$b$} to[short,o-] ++(1,0) to[R, l=$r_\pi$,-*] ++(0,-2);
+        \draw (6,2) node[anchor = west](c){$c$} to[short,o-] ++(-1,0) to[R, l=$r_o$,-*] ++(0,-2);
+        \draw (5,2) to[short,*-] ++(-2,0) to[I,l=$g_m v_{be}$,-*] ++(0,-2);
+    \end{circuitikz}
+\end{figure}
+
 Antes de analizar el modelo de pequeña señal del par Darlington en configuración de seguidor de emisor, es necesario encontrar los parámetros del modelo híbrido, dadas por las siguientes ecuaciones..
 %% Estaba Giacoletto, pero es mas facil las cuentas con hibrido. Nose si afecta el cambio
+% Necesitamos trabajar con Giacoletto porque tenemos que ver las capacitancias parásitas para la alta frecuencia. Además se puede trabajar directamente con los resultados de las tablas.
 \begin{align}
     hie = \frac{\beta V_T}{I_{C1}} \\
     hfe = \approx \beta \\
