@@ -6,7 +6,7 @@ En este caso, se estudió el comportamiento de un Par Darlington con una carga a
 
 \begin{figure} [ht]
     \centering
-    \begin{minipage}{0.48\textwidth}
+    \begin{minipage}[b]{0.48\textwidth}
         \centering
         \begin{circuitikz}[american voltages]
             \draw
@@ -20,7 +20,7 @@ En este caso, se estudió el comportamiento de un Par Darlington con una carga a
         \caption{Par Darlington}
         \label{fig:darlington}
     \end{minipage}\hfill
-    \begin{minipage}{0.48\textwidth}
+    \begin{minipage}[b]{0.48\textwidth}
         \centering
         \begin{circuitikz}[american voltages]
             \ctikzset{resistors/scale=0.5};
@@ -55,13 +55,13 @@ Para este trabajo se utilizaron dos transistores BC547 con características \dot
 El Espejo de Corriente permite forzar la corriente a la salida del dispositivo a una corriente de referencia determinada. Para este trabajo se lo implemento con un par de transistores n-mos de enriquecimiento, configurados como en la figura \ref{fig:nmos_mirror}.
 
 \section{Par Darlington con Carga Activa}
-Uniendo los componentes mencionados previamente se pasó a diseñar y analizar el circuito de la figura \ref{fig:circuito}. Como se observa, se trata de el Par Darlington actuando como circuito amplificador y el espejo de corriente con n-mos actuando como carga activa, fijando el punto de trabajo de los BJT del Par Darlington. De esta manera también debería presentar mayor estabilidad frente a cambios de tensión y temperatura.
+Uniendo los componentes mencionados previamente se pasó a diseñar y analizar el circuito de la figura \ref{fig:circuito_activo}. Como se observa, se trata de el Par Darlington actuando como circuito amplificador y el espejo de corriente con n-mos actuando como carga activa, fijando el punto de trabajo de los BJT del Par Darlington. De esta manera también debería presentar mayor estabilidad frente a cambios de tensión y temperatura.
 
 En contraste, también se analizó el mismo circuito con una carga pasiva, como se ve en la figura \ref{fig:circuito_pasivo}, de forma de evaluar los beneficios de utilizar una carga activa.
 
 \begin{figure} [ht]
     \centering
-    \begin{minipage}{0.44\textwidth}
+    \begin{minipage}[b]{0.44\textwidth}
         \centering
         \begin{circuitikz}
             \ctikzset{resistors/scale=0.5};
@@ -81,7 +81,7 @@ En contraste, también se analizó el mismo circuito con una carga pasiva, como 
         \caption{Par Darlington con Carga Pasiva}
         \label{fig:circuito_pasivo}
     \end{minipage}\hfill
-    \begin{minipage}{0.52\textwidth}
+    \begin{minipage}[b]{0.52\textwidth}
         \centering
         \begin{circuitikz}
             \ctikzset{resistors/scale=0.5};
@@ -103,6 +103,6 @@ En contraste, también se analizó el mismo circuito con una carga pasiva, como 
             ;
         \end{circuitikz}
         \caption{Par Darlington con Carga Activa}
-        \label{fig:circuito}
+        \label{fig:circuito_activo}
     \end{minipage}
 \end{figure}
