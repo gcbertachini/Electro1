@@ -96,7 +96,7 @@ Luego, los resultados de \eqref{eq:I_ref} pueden utilizarse en \eqref{eq:pol_I_E
 También a partir de la ecuación	 \eqref{eq:sah} se puede obtener las tensiones de polarización:
 
 \begin{align}
-    V_{DS} &= \sqrt{\frac{I_D L}{K' W}} + V_{TH}\\
+    V_{DS} &= V_{CC} - I_B R_B - 2V_{BEon} \\
     V_{CEQ2} &= V_{CC} - V_{DS} \\
     V_{CEQ1} &= V_{CC} - V_{DS} - V_{BEon}
 \end{align}
@@ -425,6 +425,37 @@ Con este esquema simplificado, se pudo calcular las constantes de tiempo, y obte
 \end{equation}
 
 \section{Selección de Componentes}
+
+En primer lugar se definieron los transistores a utilizar:
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|r|r|r|r|}
+        \hline
+        \multicolumn{2}{|r|}{Par Darlington}                     & $Q_1$  & $Q_2$  \\ \hline
+        \multicolumn{2}{|r|}{Componente}                         & BC547B & BC547B \\ \hline
+        \multirow{2}{*}{Polarización}            & $I_{CQ}$      &        &        \\ \cline{2-4} 
+                                                 & $V_{CE}$      &        &        \\ \hline
+        \multirow{3}{*}{Parámetros H}            & $h_{ie}$      &        &        \\ \cline{2-4} 
+                                                 & $h_{fe}$      &        &        \\ \cline{2-4} 
+                                                 & $h_{oe}$      &        &        \\ \hline
+        \multirow{8}{*}{Circuito Incremental}    & $\Delta_v$    &        &        \\ \cline{2-4} 
+                                                 & $\Delta_i$    &        &        \\ \cline{2-4} 
+                                                 & $Z_i$         &        &        \\ \cline{2-4} 
+                                                 & $Z_o$         &        &        \\ \cline{2-4} 
+                                                 & $\Delta_{vs}$ &        &        \\ \cline{2-4} 
+                                                 & $\Delta_{is}$ &        &        \\ \cline{2-4} 
+                                                 & $Z_{ia}$      &        &        \\ \cline{2-4} 
+                                                 & $Z_{oa}$      &        &        \\ \hline
+        \multirow{2}{*}{Respuesta en Frecuencia} & $f_L$         &        &        \\ \cline{2-4} 
+                                                 & $f_H$         &        &        \\ \hline
+    \end{tabular}
+    \caption{Parámetros teóricos de los transistores del Par Darlington}
+    \label{tab:vals_teo}
+\end{table}
+
 \subsection{Limitaciones de la Plataforma de Medición} \label{sec:EE_limits}
 
 Dado que el \textit{Electronics Explorer} sobre el cual se hicieron las mediciones tiene un límite de corriente de $1.5 \si{\ampere}$ en las salidas programables, se diseñaron los circuitos de forma de no saturar al dispositivo. La salida $V_{cc}$ no tiene limitación de corriente, pero la tensión es muy baja.
