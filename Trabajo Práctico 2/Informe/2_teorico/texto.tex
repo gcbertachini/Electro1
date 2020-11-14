@@ -84,7 +84,11 @@ Considerando que por la configuración la tensión $V_{GS}$ será la misma para 
     I_o = \frac{(W/L)_3}{(W/L)_4} \cdot I_{ref}
 \end{equation}
 
-Por otro lado, puede diseñarse la $I_{ref}$ recorriendo la malla de $Q_4$
+Por otro lado, puede diseñarse la $I_{ref}$ recorriendo la malla de $Q_4$ y resolviendo $V_{GS}$ para la $I_D = I_{ref}$
+
+\begin{equation}
+    V_{GS} = V_{TH} + \sqrt{\frac{I_D}{K'}\cdot\frac{L}{W}}
+\end{equation}
 
 \begin{equation}
     I_{ref}=\frac{V_{DD}-V_{GS}}{R_{ref}}
@@ -428,8 +432,21 @@ Con este esquema simplificado, se pudo calcular las constantes de tiempo, y obte
 
 En primer lugar se definieron los transistores a utilizar:
 
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|r|l|l|l|r|r|l|l|r|r|l|}
+    \cline{1-3} \cline{5-7} \cline{9-11}
+    Transistor & Componente & Clase       &  & Comp.      & Valor & U                &  & Comp. & Valor & U                  \\ \cline{1-3} \cline{5-7} \cline{9-11} 
+    $Q_1$      & BC547B     & BJT NPN     &  & $R_S$      & XXX   & $\si{\kilo\ohm}$ &  & $R_L$      & XXX   & $\si{\kilo\ohm}$   \\
+    $Q_2$      & BC547B     & BJT NPN     &  & $R_B$      & XXX   & $\si{\kilo\ohm}$ &  & $C_i$      & 100   & $\si{\nano\farad}$ \\
+    $Q_3$      & BS170-D    & n-MOS enr.  &  & $R_E$      & XXX   & $\si{\kilo\ohm}$ &  & $C_L$      & 100   & $\si{\nano\farad}$ \\
+    $Q_4$      & BS170-D    & n\_MOS enr. &  & $R_{ref}$  & XXX   & $\si{\kilo\ohm}$ &  &            &       &                    \\ \cline{1-3} \cline{5-7} \cline{9-11} 
+    \end{tabular}
+    \caption{Componentes elegidos}
+\end{table}
+
+A partir de los valores de estos componentes, se calcularon los parámetros del circuito.
+
 \begin{table}[ht]
     \centering
     \begin{tabular}{|r|r|r|r|}
@@ -484,6 +501,8 @@ A partir de la expresión anterior se consideró entonces una cota máxima de la
     I_{ref} < 0.75 \si{\ampere}
     \label{eq:Iref}
 \end{equation}
+
+Finalmente, se puede confirmar que con los puntos de trabajo elegidos no habrían problemas con la plataforma de medición.
 
 \subsection{Componentes Seleccionados y Parámetros Finales}
 

@@ -17,6 +17,9 @@ hFE2= 290;
 Ccb1 = 1.7e-12;
 Ccb2 = 1.7e-12;
 
+    % Transistor MOSFET
+
+
 % Cálculos de Polarización
 IE2 = (Vcc-2*Vbe)/(RE + RB/((1+hFE1)*(1+hFE2)));
 IC2 = IE2 * hFE2/(hFE2+1);
