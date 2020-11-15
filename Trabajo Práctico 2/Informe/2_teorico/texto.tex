@@ -440,39 +440,73 @@ En primer lugar se definieron los transistores a utilizar:
     $Q_1$      & BC547B     & BJT NPN     &  & $R_S$      & XXX   & $\si{\kilo\ohm}$ &  & $R_L$      & XXX   & $\si{\kilo\ohm}$   \\
     $Q_2$      & BC547B     & BJT NPN     &  & $R_B$      & XXX   & $\si{\kilo\ohm}$ &  & $C_i$      & 100   & $\si{\nano\farad}$ \\
     $Q_3$      & BS170-D    & n-MOS enr.  &  & $R_E$      & XXX   & $\si{\kilo\ohm}$ &  & $C_L$      & 100   & $\si{\nano\farad}$ \\
-    $Q_4$      & BS170-D    & n\_MOS enr. &  & $R_{ref}$  & XXX   & $\si{\kilo\ohm}$ &  &            &       &                    \\ \cline{1-3} \cline{5-7} \cline{9-11} 
+    $Q_4$      & BS170-D    & n\_MOS enr. &  & $R_{ref}$  & XXX   & $\si{\kilo\ohm}$ &  &           $R_{\text{o mos}}$&       &                    \\ \cline{1-3} \cline{5-7} \cline{9-11} 
     \end{tabular}
     \caption{Componentes elegidos}
 \end{table}
 
-A partir de los valores de estos componentes, se calcularon los parámetros del circuito.
+A partir de los valores de estos componentes, se calcularon los parámetros del circuito. Se consideraron como primera aproximación un valor de $V_T = 25.2 \si{\milli\volt}$ y $V_A = 75 \si{\volt}$. 
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|r|r|r|r|}
+    \begin{tabular}{|l|r|r|r|r|}
         \hline
-        \multicolumn{2}{|r|}{Par Darlington}                     & $Q_1$  & $Q_2$  \\ \hline
-        \multicolumn{2}{|r|}{Componente}                         & BC547B & BC547B \\ \hline
-        \multirow{2}{*}{Polarización}            & $I_{CQ}$      &        &        \\ \cline{2-4} 
-                                                 & $V_{CE}$      &        &        \\ \hline
-        \multirow{3}{*}{Parámetros H}            & $h_{ie}$      &        &        \\ \cline{2-4} 
-                                                 & $h_{fe}$      &        &        \\ \cline{2-4} 
-                                                 & $h_{oe}$      &        &        \\ \hline
-        \multirow{8}{*}{Circuito Incremental}    & $\Delta_v$    &        &        \\ \cline{2-4} 
-                                                 & $\Delta_i$    &        &        \\ \cline{2-4} 
-                                                 & $Z_i$         &        &        \\ \cline{2-4} 
-                                                 & $Z_o$         &        &        \\ \cline{2-4} 
-                                                 & $\Delta_{vs}$ &        &        \\ \cline{2-4} 
-                                                 & $\Delta_{is}$ &        &        \\ \cline{2-4} 
-                                                 & $Z_{ia}$      &        &        \\ \cline{2-4} 
-                                                 & $Z_{oa}$      &        &        \\ \hline
-        \multirow{2}{*}{Respuesta en Frecuencia} & $f_L$         &        &        \\ \cline{2-4} 
-                                                 & $f_H$         &        &        \\ \hline
+        \multirow{2}{*}{} & \multicolumn{2}{c|}{Carga Pasiva} & \multicolumn{2}{c|}{Carga Activa} \\ \cline{2-5} 
+         & $Q_1$ & $Q_2$ & $Q_1$ & $Q_2$ \\ \hline
+        $I_{CQ} (\si{\milli\ampere})$ &  &  &  &  \\
+        $V_{CE} (\si{\volt})$ &  &  &  &  \\
+        $V_{CB} (\si{\volt})$ &  &  &  &  \\ \hline
     \end{tabular}
-    \caption{Parámetros teóricos de los transistores del Par Darlington}
-    \label{tab:vals_teo}
+    \caption{Valores teóricos de polarización}
+    \label{tab:vals_teo_pol}
 \end{table}
 
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|r|r|r|r|}
+        \hline
+        \multirow{2}{*}{} & \multicolumn{2}{c|}{Carga Pasiva} & \multicolumn{2}{c|}{Carga Activa} \\ \cline{2-5} 
+         & $Q_1$ & $Q_2$ & $Q_1$ & $Q_2$ \\ \hline
+        $h_{fe} (\si{\ampere}/\si{\ampere})$ &  &  &  &  \\
+        $h_{ie} (\si{\ohm})$ &  &  &  &  \\
+        $h_{oe} (\si{\siemens})$ &  &  &  &  \\
+        $C_{cb} (\si{\pico\farad})$ &  &  &  &  \\ \hline
+    \end{tabular}
+    \caption{Valores teóricos del modelo incremental}
+    \label{tab:vals_teo_h}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|r|r|r|r|}
+        \hline
+        \multirow{2}{*}{} & \multicolumn{2}{c|}{Carga Pasiva} & \multicolumn{2}{c|}{Carga Activa} \\ \cline{2-5} 
+         & $Q_1$ & $Q_2$ & $Q_1$ & $Q_2$ \\ \hline
+        $\Delta_v$ &  &  &  &  \\ \hline
+        $\Delta_i$ &  &  &  &  \\ \hline
+        $r_i$ &  &  &  &  \\ \hline
+        $r_o$ &  &  &  &  \\ \hline
+    \end{tabular}
+    \caption{Valores incrementales del modelo incremental}
+    \label{tab:vals_teo_inc}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|r|r|}
+        \hline
+         & \multicolumn{1}{c|}{Carga Pasiva} & \multicolumn{1}{c|}{Carga Activa} \\ \hline
+        $\Delta_{vs}$ &  &  \\ 
+        $\Delta_{is}$ &  &  \\ 
+        $r_{ia}$ &  &  \\ 
+        $r_{oa}$ &  &  \\ \hline
+        \end{tabular}
+    \caption{Valores incrementales del circuito amplificador}
+    \label{tab:vals_teo_sys}
+\end{table}
+
+
+\newpage
 \subsection{Limitaciones de la Plataforma de Medición} \label{sec:EE_limits}
 
 Dado que el \textit{Electronics Explorer} sobre el cual se hicieron las mediciones tiene un límite de corriente de $1.5 \si{\ampere}$ en las salidas programables, se diseñaron los circuitos de forma de no saturar al dispositivo. La salida $V_{cc}$ no tiene limitación de corriente, pero la tensión es muy baja.

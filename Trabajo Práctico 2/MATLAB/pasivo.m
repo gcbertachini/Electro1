@@ -14,8 +14,9 @@ Vbe= 0.6;
 hFE1= 290;
 hFE2= 290;
 
-Ccb1 = 1.7e-12;
-Ccb2 = 1.7e-12;
+% Ccb cambia respecto a VCB
+Ccb1 = 6.2e-12;
+Ccb2 = 5.0e-12;
 
 % Cálculos de Polarización
 IE2 = (Vcc-2*Vbe)/(RE + RB/((1+hFE1)*(1+hFE2)));
@@ -28,6 +29,14 @@ VCE1 = Vcc - IE2*RE - Vbe;
 IB1 = IC1/hFE1;
 IB2 = IC2/hFE2;
 
+% Importante para Ccb
+VB1 = Vcc-IB1*RB;
+VCB1 = Vcc-VB1;
+
+VB2 = VB1-Vbe;
+VCB2 = Vcc-VB2;
+
+% Potencia del Transistor
 PW1 = VCE1*IC1;
 PW2 = VCE2*IC2;
 % Verificar Zona Segura

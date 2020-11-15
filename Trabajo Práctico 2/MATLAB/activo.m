@@ -14,8 +14,9 @@ Vbe= 0.6;
 hFE1= 290;
 hFE2= 290;
 
-Ccb1 = 1.7e-12;
-Ccb2 = 1.7e-12;
+% Ccb cambia respecto a VCB
+Ccb1 = 6.2e-12;
+Ccb2 = 5.0e-12;
 
     % Transistor MOSFET
 Iref = 10e-3;
@@ -37,6 +38,13 @@ IB2 = IC2/hFE2;
 VDS  = Vcc - IB1*RB - 2*Vbe;
 VCE2 = Vcc - VDS;
 VCE1 = Vcc - VDS - Vbe;
+
+% Importante para Ccb
+VB1 = Vcc-IB1*RB;
+VCB1 = Vcc-VB1;
+
+VB2 = VB1-Vbe;
+VCB2 = Vcc-VB2;
 
 PW1 = VCE1*IC1;
 PW2 = VCE2*IC2;
