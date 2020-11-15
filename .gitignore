@@ -148,3 +148,7 @@ dmypy.json
 *.out
 
 *.pdf
+
+*.raw
+
+*.asv

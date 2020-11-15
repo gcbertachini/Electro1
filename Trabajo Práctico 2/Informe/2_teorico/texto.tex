@@ -183,7 +183,6 @@ Dado que el espejo de corriente tiene como referencia una corriente continua, su
     R_O = \frac{V_A}{I_0} 
     \label{eq:imp salida fte corriente}
 \end{equation}
-Dada la polariacion especificada, se haya valor numerico para $R_O =XX \Omega$.
 
 \newpage
 \section{Circuito Incremental}
@@ -430,61 +429,16 @@ Con este esquema simplificado, se pudo calcular las constantes de tiempo, y obte
 
 \section{Selección de Componentes}
 
-En primer lugar se definieron los transistores a utilizar:
-
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{|r|l|l|l|r|r|l|l|r|r|l|}
-    \cline{1-3} \cline{5-7} \cline{9-11}
-    Transistor & Componente & Clase       &  & Comp.      & Valor & U                &  & Comp. & Valor & U                  \\ \cline{1-3} \cline{5-7} \cline{9-11} 
-    $Q_1$      & BC547B     & BJT NPN     &  & $R_S$      & XXX   & $\si{\kilo\ohm}$ &  & $R_L$      & XXX   & $\si{\kilo\ohm}$   \\
-    $Q_2$      & BC547B     & BJT NPN     &  & $R_B$      & XXX   & $\si{\kilo\ohm}$ &  & $C_i$      & 100   & $\si{\nano\farad}$ \\
-    $Q_3$      & BS170-D    & n-MOS enr.  &  & $R_E$      & XXX   & $\si{\kilo\ohm}$ &  & $C_L$      & 100   & $\si{\nano\farad}$ \\
-    $Q_4$      & BS170-D    & n\_MOS enr. &  & $R_{ref}$  & XXX   & $\si{\kilo\ohm}$ &  &            &       &                    \\ \cline{1-3} \cline{5-7} \cline{9-11} 
-    \end{tabular}
-    \caption{Componentes elegidos}
-\end{table}
-
-A partir de los valores de estos componentes, se calcularon los parámetros del circuito.
-
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{|r|r|r|r|}
-        \hline
-        \multicolumn{2}{|r|}{Par Darlington}                     & $Q_1$  & $Q_2$  \\ \hline
-        \multicolumn{2}{|r|}{Componente}                         & BC547B & BC547B \\ \hline
-        \multirow{2}{*}{Polarización}            & $I_{CQ}$      &        &        \\ \cline{2-4} 
-                                                 & $V_{CE}$      &        &        \\ \hline
-        \multirow{3}{*}{Parámetros H}            & $h_{ie}$      &        &        \\ \cline{2-4} 
-                                                 & $h_{fe}$      &        &        \\ \cline{2-4} 
-                                                 & $h_{oe}$      &        &        \\ \hline
-        \multirow{8}{*}{Circuito Incremental}    & $\Delta_v$    &        &        \\ \cline{2-4} 
-                                                 & $\Delta_i$    &        &        \\ \cline{2-4} 
-                                                 & $Z_i$         &        &        \\ \cline{2-4} 
-                                                 & $Z_o$         &        &        \\ \cline{2-4} 
-                                                 & $\Delta_{vs}$ &        &        \\ \cline{2-4} 
-                                                 & $\Delta_{is}$ &        &        \\ \cline{2-4} 
-                                                 & $Z_{ia}$      &        &        \\ \cline{2-4} 
-                                                 & $Z_{oa}$      &        &        \\ \hline
-        \multirow{2}{*}{Respuesta en Frecuencia} & $f_L$         &        &        \\ \cline{2-4} 
-                                                 & $f_H$         &        &        \\ \hline
-    \end{tabular}
-    \caption{Parámetros teóricos de los transistores del Par Darlington}
-    \label{tab:vals_teo}
-\end{table}
-
 \subsection{Limitaciones de la Plataforma de Medición} \label{sec:EE_limits}
 
 Dado que el \textit{Electronics Explorer} sobre el cual se hicieron las mediciones tiene un límite de corriente de $1.5 \si{\ampere}$ en las salidas programables, se diseñaron los circuitos de forma de no saturar al dispositivo. La salida $V_{cc}$ no tiene limitación de corriente, pero la tensión es muy baja.
 
 Como se planea utilizar un espejo de corriente, donde se consideró que ambos transistores n-mos son idénticos, las corrientes de polarización que se le pedirán a la fuente estarán dadas por:
 
-\begin{align*}
-    I_{CQ} &= \frac{h_{fe}}{h_{fe}+1} \cdot I_{EQ} \\
-    I_{BQ} &= \frac{1}{h_{fe}+1} \cdot I_{EQ}\\
-    I_{CQ2} &= I_o = I_{ref} \\
-    I &= I_{ref} + I_{CQ2} + I_{CQ1} + I_{BQ1}
-\end{align*}
+\begin{equation*}
+    I_{CQ} = \frac{h_{fe}}{h_{fe}+1} \cdot I_{EQ}; \quad I_{BQ} = \frac{1}{h_{fe}+1} \cdot I_{EQ}; \quad
+    I_{CQ2} = I_o = I_{ref}; \quad I = I_{ref} + I_{CQ2} + I_{CQ1} + I_{BQ1}
+\end{equation*}
 
 \begin{equation}
     \Rightarrow I = I_{ref} \left(1 + \frac{h_{fe2}}{h_{fe2}+1} + \frac{1}{h_{fe2}+1}\cdot\frac{h_{fe1}}{h_{fe1}+1}+\frac{1}{h_{fe2}+1}\cdot\frac{1}{h_{fe1}+1}\right)
@@ -506,14 +460,91 @@ Finalmente, se puede confirmar que con los puntos de trabajo elegidos no habría
 
 \subsection{Componentes Seleccionados y Parámetros Finales}
 
+Tenieniendo en cuenta las limitaciones anteriores, primero se definieron los transistores a utilizar:
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|r|l|l|l|r|r|l|l|r|r|l|}
+    \cline{1-3} \cline{5-7} \cline{9-11}
+    Transistor & Componente & Clase       &  & Comp.      & Valor & U                &  & Comp. & Valor & U                  \\ \cline{1-3} \cline{5-7} \cline{9-11} 
+    $Q_1$      & BC547B     & BJT NPN     &  & $R_S$      & 50   & $\si{\ohm}$ &  & $R_L$      & 100   & $\si{\kilo\ohm}$   \\
+    $Q_2$      & BC547B     & BJT NPN     &  & $R_B$      & 1.0   & $\si{\kilo\ohm}$ &  & $C_i$      & 100   & $\si{\nano\farad}$ \\
+    $Q_3$      & BS170-D    & nMOS enr.  &  & $R_E$      & 900   & $\si{\ohm}$ &  & $C_L$      & 100   & $\si{\nano\farad}$ \\
+    $Q_4$      & BS170-D    & nMOS enr. &  & $R_{ref}$  & 680   & $\si{\kilo\ohm}$ &  &           $V_{BEon}$& 0.6   &   $\si{\volt}$  \\ \cline{1-3} \cline{5-7} \cline{9-11} 
+    \end{tabular}
+    \caption{Componentes elegidos}
+\end{table}
+
+A partir de los valores de estos componentes, se calcularon los parámetros del circuito. Se consideraron como primera aproximación un valor de $V_T = 25.5 \si{\milli\volt}$ y $V_A = 60 \si{\volt}$. Dado que se esperan corrientes del orden de $\si{\micro\ampere}$ en $Q_1$, se tomó $h_FE = 150$. En $Q_2$ como se esperaban corrientes del orden de $10\si{\milli\ampere}$ se aproximó $h_FE = 290$.
+
 \begin{table}
     \centering
-    \begin{tabular}{|l|r|r|r|r}
-        
+    \begin{tabular}{|l|r|l|}
+        \hline
+        Característica  &   Valor   &   Unidad  \\
+        \hline
+        $V_{TH}$    &   $2.0$   &   $\si{\volt}$    \\
+        $K'\frac{W}{L}$&$0.03$  &   $\si{\siemens/\volt}$ \\
+        \hline
     \end{tabular}
+    \caption{Características principales del BS170}
+\end{table}
+
+Para el caso de la carga activa, en lugar de utilizar $R_E = 900\si{\ohm}$ se utilizó $R_E' = 11.8 \si{\kilo\ohm}$.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|r|r|r|r|}
+        \hline
+        \multirow{2}{*}{} & \multicolumn{2}{c|}{Carga Pasiva} & \multicolumn{2}{c|}{Carga Activa} \\ \cline{2-5} 
+         & $Q_1$ & $Q_2$ & $Q_1$ & $Q_2$ \\ \hline
+
+        $I_{CQ} (\si{\ampere})$ & $29.6 \si{\micro}$& $8.64\si{\milli}$ & $29.6 \si{\micro}$& $8.64\si{\milli}$\\
+        $V_{CE} (\si{\volt})$   & $0.60$            & $1.20$ & $0.60$ & $1.20$ \\
+        $V_{CB} (\si{\volt})$   & $19.7 \si{\milli}$& $0.60$ & $19.7 \si{\milli}$& $0.60$\\ \hline
+
+        $h_{fe} (\si{\ampere}/\si{\ampere})$ & $150$ & $290$ & $150$ & $290$ \\
+        $h_{ie} (\si{\kilo\ohm})$ & $130$ & $0.977$ & $130$ & $0.977$ \\
+        $h_{oe} (\si{\micro\siemens})$ & $0.493$ & $144$ & $0.493$ & $144$ \\
+        $C_{cb} (\si{\pico\farad})$ & $3.2$ & $5.0$ & $3.2$ & $5.0$ \\ \hline
+
+        $\Delta_{vi}$ & $0.9967$ & $0.9967$ & $0.9997$ & $0.9997$ \\
+        $\Delta_{ii}$ & $151$ & $291$ & $151$ & $291$ \\
+        $r_{ii} (\si{\mega\ohm})$ & $39.5$ & $0.260$ & $455$ & $3.01$ \\ 
+        $r_{oi} (\si{\ohm})$ & $862$ & $5.91$ & $862$ & $5.91$ \\ \hline
+    \end{tabular}
+    \caption{Valores teóricos los transistores}
+    \label{tab:vals_teo}
+\end{table}
+
+Para obtener el valor de $C_{cb}$ se remitió a la hoja de datos, dado que esta capacitancia es altamente sensible a la tensión entre la Base y el Colector.
+
+Con estos resultados se verifica teóricamente que la aplicación adecuada de la carga activa no altera el punto de trabajo de los BJT.
+
+\begin{table}[htt]
+    \centering
+    \begin{tabular}{|l|r|r|}
+        \hline
+         & \multicolumn{1}{c|}{Carga Pasiva} & \multicolumn{1}{c|}{Carga Activa} \\ \hline
+        $\Delta_{v}$    & $0.9904$        & $0.9992$ \\
+        $\Delta_{vs}$   & $0.9432$        & $0.9432$ \\ 
+        $\Delta_{is}$   & $43.9\si{\kilo}$& $43.9\si{\kilo}$ \\ 
+        $r_{i}(\si{\kilo\ohm})$ & $39.5$ & $455$ \\ 
+        $r_{o}(\si{\ohm})$      & $5.91$ & $5.91$ \\
+        $r_{ia}(\si{\kilo\ohm})$ & $1.00$ & $1.00$ \\ 
+        $r_{oa}(\si{\ohm})$      & $5.87$ & $5.91$ \\
+        $f_L(\si{\kilo\hertz})$  & $1.53$ & $1.53$  \\
+        $f_H(\si{\mega\hertz})$  & $49.1$ & $48.9$  \\ \hline
+    \end{tabular}
+    \caption{Valores incrementales del circuito amplificador}
+    \label{tab:vals_teo_sys}
 \end{table}
 
 \section{Comparacion Teórica Carga activa y pasiva}
+
+A partir de los resultados observados en los cuadros \ref{tab:vals_teo} y \ref{tab:vals_teo_sys}, la aplicación de la carga activa por medio de un espejo de corriente trae mejoras al circuito sin cambiar su punto de polarización.
+
+Al efectivamente aumentar la resistencia en la posición de $R_E$, aumenta la resistencia $R_d$, llevando a que la ganancia de tensión en cada transistor se acerque más a la unidad, mejorando el comportamiento de seguidor por emisor, y aumentando la impedancia de entrada del circuito.
 
 %%Nose donde ponerlo, pero estimo que debe ir en esta seccion. Es mostrar como con la RO se obtiene mejor AV
 %% Y la relacion de compromiso con RE(corriente y ganancia), lo que dijo en clase.
