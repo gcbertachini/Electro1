@@ -5,7 +5,7 @@ clc
 RB = 1e3;
 RE = .9e3;
 Ci = 100e-9;
-CL = 100e-9;
+CL = 0;
 RL = 10e3;
 Vcc= 9;
 RS = 660e3;
@@ -18,18 +18,25 @@ Ccb1 = 1.7e-12;
 Ccb2 = 1.7e-12;
 
     % Transistor MOSFET
+Iref = 10e-3;
+VDD = Vcc;
+VTH = 2;
+K = 123;
 
+VGS = VTH + sqrt(Iref/K);
+Rref = (VDD-VGS)/Iref;
 
 % Cálculos de Polarización
-IE2 = (Vcc-2*Vbe)/(RE + RB/((1+hFE1)*(1+hFE2)));
+IE2 = Iref;
 IC2 = IE2 * hFE2/(hFE2+1);
 IC1 = IE2 * hFE1/(hFE1+1)/(hFE2+1);
 
-VCE2 = Vcc - IE2*RE;
-VCE1 = Vcc - IE2*RE - Vbe;
-
 IB1 = IC1/hFE1;
 IB2 = IC2/hFE2;
+
+VDS  = Vcc - IB1*RB - 2*Vbe;
+VCE2 = Vcc - VDS;
+VCE1 = Vcc - VDS - Vbe;
 
 PW1 = VCE1*IC1;
 PW2 = VCE2*IC2;
@@ -38,6 +45,7 @@ PW2 = VCE2*IC2;
 VT = 25.5e-3;
 VA = 60;
 % Parámetros Híbridos
+
 hfe1 = 330;
 hie1 = (hfe1+1)*VT/IC1;
 hoe1 = IC1/VA;
@@ -49,6 +57,7 @@ hoe2 = IC2/VA;
 rce2 = 1/hoe2;
 
 % Circuito Incremental
+RE = VA/Iref;
 Rd = 1/(1/RE + 1/RL);
 
     % Ganancias e impedancias de entrada
