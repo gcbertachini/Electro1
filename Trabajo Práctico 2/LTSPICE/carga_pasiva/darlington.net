@@ -1,0 +1,17 @@
+* C:\Users\Sabrina Ghidossi\Desktop\ITBA\3 ano 2 C\Electronica 1\Electro1\Trabajo Práctico 2\LTSPICE\carga_pasiva\darlington.asc
+Q1 Vcc vi N003 0 BC547B
+Q2 Vcc N003 N004 0 BC547B
+RB Vcc vi 1k
+Vcc Vcc 0 9
+RE N004 0 0.9k
+C1 vi N002 100n
+R1 N002 N001 100
+RL 0 vout 10k
+C2 N004 vout 100n
+V1 N001 0 SINE(0 10m 5k)
+.model NPN NPN
+.model PNP PNP
+.lib C:\Users\Sabrina Ghidossi\Documents\LTspiceXVII\lib\cmp\standard.bjt
+.tran 10m
+.backanno
+.end
