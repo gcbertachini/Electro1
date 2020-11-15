@@ -8,7 +8,7 @@ C1 vi N002 100n
 R1 N002 N001 100
 RL 0 vout 10k
 C2 N004 vout 100n
-V1 N001 0 SINE(0 10m 5k)
+V1 N001 0
 .model NPN NPN
 .model PNP PNP
 .lib C:\Users\Sabrina Ghidossi\Documents\LTspiceXVII\lib\cmp\standard.bjt
