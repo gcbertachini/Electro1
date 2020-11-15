@@ -435,12 +435,10 @@ Dado que el \textit{Electronics Explorer} sobre el cual se hicieron las medicion
 
 Como se planea utilizar un espejo de corriente, donde se consideró que ambos transistores n-mos son idénticos, las corrientes de polarización que se le pedirán a la fuente estarán dadas por:
 
-\begin{align*}
-    I_{CQ} &= \frac{h_{fe}}{h_{fe}+1} \cdot I_{EQ} \\
-    I_{BQ} &= \frac{1}{h_{fe}+1} \cdot I_{EQ}\\
-    I_{CQ2} &= I_o = I_{ref} \\
-    I &= I_{ref} + I_{CQ2} + I_{CQ1} + I_{BQ1}
-\end{align*}
+\begin{equation*}
+    I_{CQ} = \frac{h_{fe}}{h_{fe}+1} \cdot I_{EQ}; \quad I_{BQ} = \frac{1}{h_{fe}+1} \cdot I_{EQ}; \quad
+    I_{CQ2} = I_o = I_{ref}; \quad I = I_{ref} + I_{CQ2} + I_{CQ1} + I_{BQ1}
+\end{equation*}
 
 \begin{equation}
     \Rightarrow I = I_{ref} \left(1 + \frac{h_{fe2}}{h_{fe2}+1} + \frac{1}{h_{fe2}+1}\cdot\frac{h_{fe1}}{h_{fe1}+1}+\frac{1}{h_{fe2}+1}\cdot\frac{1}{h_{fe1}+1}\right)
@@ -523,9 +521,7 @@ Para obtener el valor de $C_{cb}$ se remitió a la hoja de datos, dado que esta 
 
 Con estos resultados se verifica teóricamente que la aplicación adecuada de la carga activa no altera el punto de trabajo de los BJT.
 
-asdfasdfa
-
-\begin{table}[ht]
+\begin{table}[htt]
     \centering
     \begin{tabular}{|l|r|r|}
         \hline
@@ -533,6 +529,8 @@ asdfasdfa
         $\Delta_{v}$    & $0.9904$        & $0.9992$ \\
         $\Delta_{vs}$   & $0.9432$        & $0.9432$ \\ 
         $\Delta_{is}$   & $43.9\si{\kilo}$& $43.9\si{\kilo}$ \\ 
+        $r_{i}(\si{\kilo\ohm})$ & $39.5$ & $455$ \\ 
+        $r_{o}(\si{\ohm})$      & $5.91$ & $5.91$ \\
         $r_{ia}(\si{\kilo\ohm})$ & $1.00$ & $1.00$ \\ 
         $r_{oa}(\si{\ohm})$      & $5.87$ & $5.91$ \\
         $f_L(\si{\kilo\hertz})$  & $1.53$ & $1.53$  \\
@@ -543,6 +541,10 @@ asdfasdfa
 \end{table}
 
 \section{Comparacion Teórica Carga activa y pasiva}
-asdfasdfasdfadfadsfad
+
+A partir de los resultados observados en los cuadros \ref{tab:vals_teo} y \ref{tab:vals_teo_sys}, la aplicación de la carga activa por medio de un espejo de corriente trae mejoras al circuito sin cambiar su punto de polarización.
+
+Al efectivamente aumentar la resistencia en la posición de $R_E$, aumenta la resistencia $R_d$, llevando a que la ganancia de tensión en cada transistor se acerque más a la unidad, mejorando el comportamiento de seguidor por emisor, y aumentando la impedancia de entrada del circuito.
+
 %%Nose donde ponerlo, pero estimo que debe ir en esta seccion. Es mostrar como con la RO se obtiene mejor AV
 %% Y la relacion de compromiso con RE(corriente y ganancia), lo que dijo en clase.
