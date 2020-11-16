@@ -5,7 +5,7 @@ Requiriendo entonces una mayor entrada, esta se incrementa cuidando no perder la
 La medición de la ganancia de corriente no es realizable. Principalmente debido a que la corriente de entrada es menor de la medible con el equipo previsto, sin afectar el comportamiento del circuito.
 
 \section{Circuito Construido}
-Se presenta una imagen anotada del circuito con carga activa en la imagen \ref{fig: foto circuito carga activa}. Luego se alterna la conexión en el emisor de $Q2$ entre dos resistencias en serie representando $R_E$ y en la fuente de corriente espejo conformado por los MOS-FET del lado derecho. 
+Se presenta una imagen anotada del circuito con carga activa en la imagen \ref{fig: foto circuito carga activa}. Luego se alterna la conexión en el emisor de $Q2$ entre dos resistencias en serie representando $R_E$ y en la fuente de corriente espejo conformado por los MOS-FET del lado derecho. Como $900 \Omega$ no es un valor estándar, se conecta en serie una resistencia de $680 \Omega$ y una de $220 \Omega$.
 
 \begin{figure}[ht]
     \centering
@@ -79,20 +79,12 @@ Se utilizo una $R_g$ de $50\Omega$, ya que no se encuentra disponible el valor d
     \caption{Tabla comparación $\Delta_{VS}$}\label{table:comp avs}
 \end{table}
 
-Como es de esperar no se mide exactamente lo mismo a lo esperado el la teoria. De todas formas las mediciones se encuentran en un rango aceptable. 
+Como es de esperar no se mide exactamente lo mismo a lo esperado el la teoría. De todas formas las mediciones se encuentran en un rango aceptable. 
 Es evidente que la carga activa mejora el rendimiento del amplificador. Ya que para pequeñas señales, el $Q2$ vera una mayor resistencia en su emisor mejorando $R_D$ pero manteniendo una similar polarización. 
-Tambien se manifiesta la forma en la que $R_S$ degrada el valor de la ganancia, en donde es mas perceptible es con la carga activa.
+También se manifiesta la forma en la que $R_S$ degrada el valor de la ganancia, en donde es más perceptible es con la carga activa. 
 
-También se observan en las figuras \ref{fig:Av oscilo}, el contraste entre formas de onda de salida y entrada para ambas cargas.
+Se presenta en las figuras \ref{fig:Av oscilo}, el contraste entre formas de onda de salida y entrada para ambas cargas.
 
-
-%%\begin{figure}[H]
-    %%\centering
-    %%\includegraphics[width=.45\textwidth]{figs/Rauch/Histogramas/Histograma f0.png}
-    %%\includegraphics[width=.45\textwidth]{figs/Rauch/Histogramas/Histograma B.png}
-    %%\caption{Histogramas para frecuencia central y ancho de banda normalizado}
-  %%  \label{fig:histo f0 y B BP}
-%%\end{figure}
 
 \begin{figure}[ht]
 \begin{subfigure}{.45\textwidth}
@@ -116,9 +108,9 @@ También se observan en las figuras \ref{fig:Av oscilo}, el contraste entre form
 \subsection{Impedancias de Entrada y Salida}
 
 El procedimiento que se emplea para medir la impedancia de entrada consta en insertar una resistencia de referencia de $1 k\Omega$ con tolerancia $1\%$ entre el generador de ondas y el capacitor de desacople en la base de $Q1$. Se elige este valor ya que es comparable al esperado teóricamente.
-Midiendo la caída de tensión en esta y dividiendo por su valor nominal, se calcula la corriente que entra a la base del transistor para pequeñas señales. Luego el cociente entre la tensión de entrada a la base, y la corriente previamente calculada se estima la impedancia de entrada. Esta medición corresponde a la impedancia de entrada del amplificador, por lo que el valor no es alto como se esperaría del par Darlington.
-La resistencia de entrada del transistor se encuentra en paralelo con $R_B$, la cual es mucho menor a la calculada para el transistor. Llevando entonces al bajo valor encontrado en la práctica.
-Se realiza el mismo procedimiento para las dos cargas, por mas que se espera un resultado muy similar. En la tabla \ref{table:Ri comp}, se contrasta lo medido,simulado y calculado teóricamente.
+Midiendo la caída de tensión en esta y dividiendo por su valor nominal, se calcula la corriente que entra a la base del transistor para pequeñas señales. Luego el cociente entre la tensión de entrada a la base, y la corriente previamente calculada se estima el valor de interés. Esta medición corresponde a la impedancia de entrada del amplificador, por lo que el valor no es alto como se esperaría del par Darlington.
+Ya que esta se encuentra en paralelo con $R_B$, la cual es mucho menor a la calculada para el par Darlington sin considerar su periferia. Llevando entonces al bajo valor encontrado en la práctica.
+Se realiza el mismo procedimiento para la carga activa y pasiva, por mas que se espera un resultado muy similar. En la tabla \ref{table:Ri comp}, se contrasta lo medido,simulado y calculado teóricamente.
 
 \begin{table}[ht]
     \centering
@@ -152,32 +144,43 @@ Contando con estos valores se emplea la ecuación \ref{eq:zout teor}, encontrand
     \caption{Comparación impedancia de Salida}\label{table:Ro comp}
 \end{table}
 
-Con una diferencia de unos pocos $\Omega$ se vuelve a presenciar la similitud entre la practica y lo teorico. Estos valores de resistencia de salida son una virtud de este circuito, siempre se busca que sea baja a fin de no cargar ni afectar etapas posteriores a la misma. Especialmente en un seguidor de emisor o buffer.
+Con una diferencia de unos pocos $\Omega$ se vuelve a presenciar la similitud entre la practica y lo teórico. Estos valores de resistencia de salida son una virtud de este circuito, siempre se busca que sea baja a fin de no cargar ni afectar etapas posteriores a la misma. Especialmente en un seguidor de emisor o buffer.
 
 \subsection{Respuesta en Frecuencia}
 
 La respuesta en frecuencia se mide haciendo uso del \textit{Network Analizer} incluido en el equipo de medición. Debido a su bajo ancho de banda se dificulta medir el polo de alta, ya que el limite de medición se impone a los $10 MHz$. No obstante una decada antes del polo previsto se comienza a ver un cambio de fase, como es de esperar.
-El polo de baja se observa claramente en el rango determinado. En el gráfico \label{fig:resp frec polo} se muestra la respuesta medida.
+El polo de baja se observa claramente en el rango determinado. En las figuras \ref{fig:frec carga pasiva} y \ref{fig:frec carga activa} se muestra la respuesta medida.
+
+%\begin{figure}[ht]
+%    \begin{subfigure}{.45\textwidth}
+%      \centering
+%      % include first image
+%      \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Pasiva/resp frec.png}  
+%      \caption{Carga Pasiva}
+%      \label{fig:frec carga pasiva}
+ %   \end{subfigure}
+  %  \begin{subfigure}{.45\textwidth}
+   %   \centering
+  % include second image
+%     \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Activa/respfrec.png}  
+%      \caption{Carga Activa}
+%      \label{fig:frec carga activa}
+%    \end{subfigure}
+%    \caption{Respuesta en frecuencia}
+%    \label{fig:resp frec oscilo}
+%    \end{figure}
+
 
 \begin{figure}[ht]
-    \begin{subfigure}{.45\textwidth}
-      \centering
-      % include first image
-      \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Pasiva/resp frec.png}  
-      \caption{Carga Pasiva}
-      \label{fig:frec carga pasiva}
-    \end{subfigure}
-    \begin{subfigure}{.45\textwidth}
-      \centering
-      % include second image
-      \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Activa/respfrec.png}  
-      \caption{Carga Activa}
-      \label{fig:frec carga activa}
-    \end{subfigure}
-    \caption{Respuesta en frecuencia}
-    \label{fig:resp frec oscilo}
-    \end{figure}
+    \centering
+    \includegraphics[width = 0.8\textwidth]{4_medicion/figs/2 pasada/Pasiva/resp frec.png}
+    \caption{Carga Pasiva}
+    \label{fig:frec carga pasiva}
+\end{figure}
 
-
-
-
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{4_medicion/figs/2 pasada/Activa/respfrec.png}
+    \caption{Carga Activa}
+    \label{fig:frec carga activa}
+\end{figure}
