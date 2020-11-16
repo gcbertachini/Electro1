@@ -1,11 +1,42 @@
 \chapter{Mediciones y Resultados}
-Lorem ipsum
+Se conectan entonces ambos circuitos en la placa Electronics Explorer. Debido a las limitaciones del dispositivo, se utilizó una tension de alimentacion de $V_{CC} = 9V$ tanto para el par Darlington como para la carga activa.
+A su vez se utiliza el generador arbitrario de funciones para inyectar una señal de $500 mV$ a una frecuencia de $10kHz$ con el objetivo de medir la respuesta del circuito a pequenias seniales. En principio se plantea una senal de $50 mV$, pero debido a una considerable cantidad de ruido en la medicion se imposibilita la medicion precisa del sistema.
+Requiriendo entonces una mayor entrada, esta se incrementa cuidando no perder la linealidad de la respuesta hasta el valor propuesto previamente.
 \section{Circuito Construido}
-Lorem ipsum
+El circuito realizado se encuentra en la figura REFERENCIA. En donde se alterna en el emisor de $Q2$ entre dos resistencias en serie representando $R_E$ y en la fuente de corriente espejo conformado por los MOS-FET del lado derecho.
+
+INSERTAR FOTO
+
+
 \section{Mediciones}
-Lorem ipsum
+A continuacion se presentan las mediciones de los parametros presentados previamente de manera teorica. Tanto para el Darlington con carga activa y carga pasiva.
 
 \subsection{Ganancia de Tensión}
+
+En la tabla REFERENCIA se muestran los resultados para $\Delta_V$ y $\Delta_{Vs}$ en ambas configuraciones. Y en contraste con los simulado y lo esperado teoricamente.
+
+INSERTAR TABLA 
+
+Tambien se observan en las figuras REFERENCIAS, el contraste entre formas de onda de salida y entrada para ambas cargas.
+
+INSERTAR FIGURAS.
+
 \subsection{Ganancia de Corriente}
+%% No la medimos por que la de base es muy chica. Se podria calcular la de salida con los daos de AVS
 \subsection{Impedancias de Entrada y Salida}
+
+El procedimiento que se emplea para medir la impedancia de entrada consta en insertar una resistencia de referencia de $1 k\Omega$ con tolerancia $1\%$entre el generador de ondas y el capacitor de desacople en la base de $Q1$. Se elige este valor ya que es comparable al esperado teoricamente (ESTO NOSE BIEN GUITARREARLO).
+Midiendo la caida de tension en esta y dividiendo por su valor nominal, se haya la corriente que entra a la base del transistor para pequenias seniales. Luego el cociente entre la tension de entrada a la base, y la corriente previamente calculada se estima la impedancia de entrada.
+Se realiza el mismo procedimiento para las dos cargas, por mas que se espera un resultado muy similar. En la tabla REFERENCIA, se contrasta lo medido,simulado y calculado teoricamente.
+
+TABLA  
+
+Para la impedancia de salida se realiza una tecnica prevista en el material didactico de la catedra. Consta en medir la tension a la salida del amplificador a circuito abierto (carga infinita),denominada $V_{open}$. Luego se introduce una carga $R_L$ y se mide la tension $V_L$ a traves de la misma.
+Contando con estos valores se emplea la ecuacion \ref{eq:zout teor}, encontrando asi un valor para la impedancia de salida.
+
+\begin{equation}
+    R_O = R_L(\frac{V_{open}}{V_L}-1)
+    \label{eq:zout teor}
+\end{equation}
+
 \subsection{Respuesta en Frecuencia}
