@@ -1,7 +1,9 @@
 \chapter{Mediciones y Resultados}
-Se conectan entonces ambos circuitos en la placa Electronics Explorer. Debido a las limitaciones del dispositivo, se utilizó una tension de alimentacion de $V_{CC} = 9V$ tanto para el par Darlington como para la carga activa.
-A su vez se utiliza el generador arbitrario de funciones para inyectar una señal de $500 mV$ a una frecuencia de $10kHz$ con el objetivo de medir la respuesta del circuito a pequenias seniales. En principio se plantea una senal de $50 mV$, pero debido a una considerable cantidad de ruido en la medicion se imposibilita la medicion precisa del sistema.
+Se conectan entonces ambos circuitos en la placa \textit{Electronics Explorer}. Debido a las limitaciones del dispositivo, se utilizó una tension de alimentacion de $V_{CC} = 9V$ tanto para el par Darlington como para la carga activa.
+A su vez se utiliza el generador arbitrario de funciones para inyectar una señal de $500 mV$ a una frecuencia de $10kHz$ con el objetivo de medir la respuesta del circuito a pequeñas señales. En principio se plantea una senal de $50 mV$, pero debido a una considerable cantidad de ruido en la medicion se imposibilita la medicion precisa del sistema.
 Requiriendo entonces una mayor entrada, esta se incrementa cuidando no perder la linealidad de la respuesta hasta el valor propuesto previamente.
+La medición de la ganancia de corriente no es realizable. Principalmente debido a que la corriente de entrada es menor de la medible con el equipo previsto, sin afectar el comportamiento del circuito.
+
 \section{Circuito Construido}
 El circuito realizado se encuentra en la figura REFERENCIA. En donde se alterna en el emisor de $Q2$ entre dos resistencias en serie representando $R_E$ y en la fuente de corriente espejo conformado por los MOS-FET del lado derecho.
 
@@ -10,6 +12,11 @@ INSERTAR FOTO
 
 \section{Mediciones}
 A continuacion se presentan las mediciones de los parametros presentados previamente de manera teorica. Tanto para el Darlington con carga activa y carga pasiva.
+
+\subsection{Caracterización de fuente de corriente}
+
+Es necesario en principio encontrar el valor de $I_O$ de la fuente de corriente. Al ser un componente real, no se puede esperar que ambos transistores n-MOS compartan el mismo valor de $\frac{W}{L}$, por lo que la relacion de corrientes escrita en \ref{eq:io func iref} no es unitaria.
+Como se requiere un valor especifico de $I_O$ para la experiencia, se utiliza una resistencia variable como $R_{ref}$ y se la varia hasta que en la salida la corriente sea de los $8,6 mA$ requeridos.
 
 \subsection{Ganancia de Tensión}
 
@@ -21,8 +28,6 @@ Tambien se observan en las figuras REFERENCIAS, el contraste entre formas de ond
 
 INSERTAR FIGURAS.
 
-\subsection{Ganancia de Corriente}
-%% No la medimos por que la de base es muy chica. Se podria calcular la de salida con los daos de AVS
 \subsection{Impedancias de Entrada y Salida}
 
 El procedimiento que se emplea para medir la impedancia de entrada consta en insertar una resistencia de referencia de $1 k\Omega$ con tolerancia $1\%$entre el generador de ondas y el capacitor de desacople en la base de $Q1$. Se elige este valor ya que es comparable al esperado teoricamente (ESTO NOSE BIEN GUITARREARLO).
@@ -40,3 +45,11 @@ Contando con estos valores se emplea la ecuacion \ref{eq:zout teor}, encontrando
 \end{equation}
 
 \subsection{Respuesta en Frecuencia}
+
+La respuesta en frecuencia se mide haciendo uso del \textit{Network Analizer} incluido en el equipo de medicion. Debido a su bajo ancho de banda se dificulta medir el polo de alta, ya que el limite de medicion se impone a los $10 MHz$. No obstante una decada antes del polo previsto se comienza a ver un cambio de fase, como es de esperar.
+El polo de baja se observa claramente en el rango determinado. En el grafico REFERENCIA se solapan las mediciones, la transferencia teorica y la simulada.
+
+INSERTAR GRAFICOS.
+
+
+
