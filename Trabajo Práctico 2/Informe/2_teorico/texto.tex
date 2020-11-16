@@ -68,6 +68,7 @@ Recorriendo las mallas de salida se obtuvieron las $V_{CEQ}$ de cada transistor.
 \begin{align}
     V_{CEQ2} &= V_{CC} - I_{E2} R_E \\
     V_{CEQ1} &= V_{CC} - I_{E2} R_E - V_{BEon} 
+    \label{eq:pol icq}
 \end{align}
 
 \subsection{Carga Activa}
@@ -246,11 +247,8 @@ Por otro lado, la impedancia de entrada del amplificador estará dada por:
     R_{ia}=R_i \parallel R_B
     \label{R_ia}
 \end{equation}
-De la ecuación anterior se puede observar la importancia de $R_B$ en el circuito, ya que tomar un valor muy bajo 
-me traería aparejada una gran pérdida en la impedancia de entrada del dispositivo. Sin embargo, también es 
-necesario considerar que aumentar $R_B$  tiene un efecto colateral en la corriente de emisor 
-de $Q_2$ dada por la ecuación[\ref{eq:pol_I_E2}]. De esta manera, ya no podríamos asumir un error despreciable y la 
-ecuación [\ref{eq:pol_I_E2}] ya no sería válida. \par 
+De la ecuación anterior se puede observar la importancia de $R_B$ en el circuito, ya que tomar un valor muy bajo traería aparejada una gran pérdida en la impedancia de entrada del dispositivo. Sin embargo, también es necesario considerar que aumentar $R_B$  tiene un efecto colateral en la corriente de emisor de $Q_2$ dada por la ecuación \eqref{eq:pol_I_E2}. Si fuese demasiado alta, en el orden de $10^4$ veces mayor a $R_E$, su influencia no sería despreciable y la ecuación \eqref{eq:pol_I_E2} ya no sería válida.
+
 Por otro lado, la impedancia de entrada del sistema estará dada por:
 \begin{equation}
     R_{is}=\frac{R_{ia}}{R_{ia}+R_s}
@@ -545,7 +543,6 @@ A partir de los valores de estos componentes, se calcularon los parámetros del 
     \caption{Características principales del BS170}
 \end{table}
 
-\newpage
 \footnotetext[2]{Se tomó el $V_{TH}$ más alto de la hoja de datos. Esto influye en $R_{ref}$ pero en la práctica se la ajustó con otros métodos.}
 \footnotetext[3]{Estimado gráficamente de la hoja de datos}
 

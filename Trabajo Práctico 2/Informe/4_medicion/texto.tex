@@ -1,62 +1,98 @@
 \chapter{Mediciones y Resultados}
-Se conectan entonces ambos circuitos en la placa \textit{Electronics Explorer}. Debido a las limitaciones del dispositivo, se utilizó una tension de alimentacion de $V_{CC} = 9V$ tanto para el par Darlington como para la carga activa.
-A su vez se utiliza el generador arbitrario de funciones para inyectar una señal de $500 mV$ a una frecuencia de $10kHz$ con el objetivo de medir la respuesta del circuito a pequeñas señales. En principio se plantea una senal de $50 mV$, pero debido a una considerable cantidad de ruido en la medicion se imposibilita la medicion precisa del sistema.
+Se conectan entonces ambos circuitos en la placa \textit{Electronics Explorer}. Debido a las limitaciones del dispositivo, se utilizó una tensión de alimentación de $V_{CC} = 9V$ tanto para el par Darlington como para la carga activa.
+A su vez se utiliza el generador arbitrario de funciones para inyectar una señal de $500 mV$ a una frecuencia de $10kHz$ con el objetivo de medir la respuesta del circuito a pequeñas señales. En principio se plantea una señal de $50 mV$, pero debido a una considerable cantidad de ruido en la medición se imposibilita la realización precisa de la misma del sistema.
 Requiriendo entonces una mayor entrada, esta se incrementa cuidando no perder la linealidad de la respuesta hasta el valor propuesto previamente.
 La medición de la ganancia de corriente no es realizable. Principalmente debido a que la corriente de entrada es menor de la medible con el equipo previsto, sin afectar el comportamiento del circuito.
 
 \section{Circuito Construido}
-El circuito realizado se encuentra en la figura REFERENCIA. En donde se alterna en el emisor de $Q2$ entre dos resistencias en serie representando $R_E$ y en la fuente de corriente espejo conformado por los MOS-FET del lado derecho.
+Se presenta una imagen anotada del circuito con carga activa en la imagen \ref{fig: foto circuito carga activa}. Luego se alterna la conexión en el emisor de $Q2$ entre dos resistencias en serie representando $R_E$ y en la fuente de corriente espejo conformado por los MOS-FET del lado derecho. Como $900 \Omega$ no es un valor estándar, se conecta en serie una resistencia de $680 \Omega$ y una de $220 \Omega$.
 
-INSERTAR FOTO
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{4_medicion/figs/fotos circuito/Carga Activa editada.jpg}
+    \caption{Imagen anotada del circuito con carga activa}\label{fig: foto circuito carga activa}
+\end{figure}
+%%Nose si dejarla esta, es igual a la anterior pero con 2 resistencias
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.05]{4_medicion/figs/fotos circuito/Carga Pasiva.jpg}
+    \caption{Imagen del circuito con carga pasiva}\label{fig: foto circuito carga pasiva}
+\end{figure}
 
 
 \section{Mediciones}
-A continuacion se presentan las mediciones de los parametros presentados previamente de manera teorica. Tanto para el Darlington con carga activa y carga pasiva.
+A continuación se presentan las mediciones de los parámetros presentados previamente de manera teórica. Tanto para el Darlington con carga activa y carga pasiva.
 
 \subsection{Caracterización de fuente de corriente}
 
-Es necesario en principio encontrar el valor de $I_O$ de la fuente de corriente. Al ser un componente real, no se puede esperar que ambos transistores n-MOS compartan el mismo valor de $\frac{W}{L}$, por lo que la relacion de corrientes escrita en \ref{eq:io func iref} no es unitaria.
-Como se requiere un valor especifico de $I_O$ para la experiencia, se utiliza una resistencia variable como $R_{ref}$ y se la varia hasta que en la salida la corriente sea de los $8,6 mA$ requeridos.
+Es necesario en principio encontrar el valor de $I_O$ de la fuente de corriente. Al ser un componente real, no se puede esperar que ambos transistores n-MOS compartan el mismo valor de $\frac{W}{L}$, por lo que la relación de corrientes escrita en \ref{eq:io func iref} no es unitaria.
+Como se requiere un valor especifico de $I_O$ para la experiencia, se utiliza una resistencia variable como $R_{ref}$ y se la varia hasta que en la salida la corriente sea de los $8,6 mA$ requeridos. Esta calibración se realiza con la salida de la fuente de corriente conectada a $V_{CC}$ y una resistencia de referencia de $1k\Omega$.
 
-\subsection{Polarización con Carga Pasiva}
+\subsection{Polarización}
 
-Para verificar el correcto funcionamiento del par Darlington, y su correspondencia con la teoria, se realizan mediciones de la polarizacion del mismo. Caracterizada por la tabla REFERENCIA.
+Para verificar el correcto funcionamiento del par Darlington, y su correspondencia con la teoría, se realizan mediciones de la polarización del mismo. Caracterizada por la tabla \ref{table:pola medida}. Las caidas de tension se miden con dos puntas del osciloscopio y empleando la resta de estos con el canal matematico.
+Mientras que para las corrientes se mide la diferencia de potencial a través de  una resistencia de referencia de $100 \Omega$ de tolerancia $1\%$, y se divide por su valor nominal.
 
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|r|r|r|r|}
+        \hline
+        \multirow{2}{*}{} & \multicolumn{2}{c|}{Carga Pasiva} & \multicolumn{2}{c|}{Carga Activa} \\ \cline{2-5} 
+         & $Q_1$ & $Q_2$ & $Q_1$ & $Q_2$ \\ \hline
+
+        $I_{CQ} (\si{\ampere})$ & $133 \si{\micro}$& $9.039\si{\milli}$ & $94.7 \si{\micro}$& $10.55\si{\milli}$\\
+        $V_{CE} (\si{\volt})$   & $0.429$            & $1.209$ & $0.542$ & $1.23$ \\ \hline       
+    \end{tabular}
+    \caption{Medición polarización de cada transistor}
+    \label{table:pola medida}
+\end{table}
+
+A partir de estos datos, se pueden trazar comparaciones con la tabla \ref{tab:vals_teo} conteniendo la polarización teórica de cada elemento. En primer lugar es alarmante la corriente de colector de $Q1$ con ambas cargas. Entre 3 y 4 veces mayor a lo esperado, de todas formas estas mediciones son de veracidad dudosa. Se trata de corrientes muy pequeñas y agregar una resistencia de referencia puede afectar la polarización.
+
+Ya que teóricamente, por las ecuaciones \ref{eq:pol_I_E2} y \ref{eq:pol icq}, la corriente de colector depende unicamente de valores conocidos, se ignora otra razón para estos resultados mas allá de errores de medición. Aún se investiga la razón de esta diferencia. %(NO SE ME OCURRE OTRA COSA, A USTEDES????)
+
+Por otro lado las tensiones colector-emisor con ambas cargas en $Q2$ se acercan a lo esperado teóricamente. Y las corrientes de colector presentan una diferencia de unos pocos mili amperes con la teórica. Esto es sencillamente atribuible al hecho de que como se trata de transistores reales, su parámetro de ganancia de corriente se encuentra dentro de un gran rango de valores. Muy probablemente el que se toma para el calculo teórico no es el que presentan los transistores en la realidad.
 
 
 \subsection{Ganancia de Tensión}
 
-En la tabla \ref{table:comp av} se muestran los resultados para $\Delta_V$ y $\Delta_{Vs}$ en ambas configuraciones. Y en contraste con los simulado y lo esperado teoricamente.
-
-
+En las tablas \ref{table:comp av} y \ref{table:comp avs} se muestran los resultados para $\Delta_V$ y $\Delta_{Vs}$ en ambas configuraciones. Y en contraste con los simulado y lo esperado teóricamente.
+Se utilizo una $R_g$ de $50\Omega$, ya que no se encuentra disponible el valor de la impedancia de salida del generador de funciones del \textit{Electronics Explorer}.
 
 \begin{table}[ht]
     \centering
     \begin{tabular}{|l|l|l|l|}
     \hline
-    $\Delta_V $  & Medida   & Teorica  & Simulacion \\ \hline
+    $\Delta_V $  & Medida   & Teórica  & Simulación \\ \hline
     Carga Pasiva & $0.967$  & $0,9904$ &  $XX$       \\ \hline
-    Carga Activa & $0.992$  & $0,9992$ &  $XX$          \\ \hline
+    Carga Activa & $0.983$  & $0,9992$ &  $XX$          \\ \hline
     \end{tabular}
     \caption{Tabla comparación $\Delta_V$}\label{table:comp av}
 \end{table}
 
-También se observan en las figuras REFERENCIAS, el contraste entre formas de onda de salida y entrada para ambas cargas.
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    $\Delta_{VS} $  & Medida   & Teórica  & Simulación \\ \hline
+    Carga Pasiva & $0.929$  & $0,943$ &  $XX$       \\ \hline
+    Carga Activa & $0.942$  & $0,9943$ &  $XX$          \\ \hline
+    \end{tabular}
+    \caption{Tabla comparación $\Delta_{VS}$}\label{table:comp avs}
+\end{table}
 
+Como es de esperar no se mide exactamente lo mismo a lo esperado el la teoría. De todas formas las mediciones se encuentran en un rango aceptable. 
+Es evidente que la carga activa mejora el rendimiento del amplificador. Ya que para pequeñas señales, el $Q2$ vera una mayor resistencia en su emisor mejorando $R_D$ pero manteniendo una similar polarización. 
+También se manifiesta la forma en la que $R_S$ degrada el valor de la ganancia, en donde es más perceptible es con la carga activa. 
 
-%%\begin{figure}[H]
-    %%\centering
-    %%\includegraphics[width=.45\textwidth]{figs/Rauch/Histogramas/Histograma f0.png}
-    %%\includegraphics[width=.45\textwidth]{figs/Rauch/Histogramas/Histograma B.png}
-    %%\caption{Histogramas para frecuencia central y ancho de banda normalizado}
-  %%  \label{fig:histo f0 y B BP}
-%%\end{figure}
+Se presenta en las figuras \ref{fig:Av oscilo}, el contraste entre formas de onda de salida y entrada para ambas cargas.
+
 
 \begin{figure}[ht]
 \begin{subfigure}{.45\textwidth}
   \centering
   % include first image
-  \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Pasiva/carga pasiva Av c1 entrada c2 salida.png}  
+  \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Pasiva/carga pasiva Av c1 entrada c2 salida editada.png}  
   \caption{Carga Pasiva}
   \label{fig:Av carga pasiva}
 \end{subfigure}
@@ -73,9 +109,10 @@ También se observan en las figuras REFERENCIAS, el contraste entre formas de on
 
 \subsection{Impedancias de Entrada y Salida}
 
-El procedimiento que se emplea para medir la impedancia de entrada consta en insertar una resistencia de referencia de $1 k\Omega$ con tolerancia $1\%$entre el generador de ondas y el capacitor de desacople en la base de $Q1$. Se elige este valor ya que es comparable al esperado teoricamente (ESTO NOSE BIEN GUITARREARLO).
-Midiendo la caida de tension en esta y dividiendo por su valor nominal, se haya la corriente que entra a la base del transistor para pequenias seniales. Luego el cociente entre la tension de entrada a la base, y la corriente previamente calculada se estima la impedancia de entrada.
-Se realiza el mismo procedimiento para las dos cargas, por mas que se espera un resultado muy similar. En la tabla REFERENCIA, se contrasta lo medido,simulado y calculado teoricamente.
+El procedimiento que se emplea para medir la impedancia de entrada consta en insertar una resistencia de referencia de $1 k\Omega$ con tolerancia $1\%$ entre el generador de ondas y el capacitor de desacople en la base de $Q1$. Se elige este valor ya que es comparable al esperado teóricamente.
+Midiendo la caída de tensión en esta y dividiendo por su valor nominal, se calcula la corriente que entra a la base del transistor para pequeñas señales. Luego el cociente entre la tensión de entrada a la base, y la corriente previamente calculada se estima el valor de interés. Esta medición corresponde a la impedancia de entrada del amplificador, por lo que el valor no es alto como se esperaría del par Darlington.
+Ya que esta se encuentra en paralelo con $R_B$, la cual es mucho menor a la calculada para el par Darlington sin considerar su periferia. Llevando entonces al bajo valor encontrado en la práctica.
+Se realiza el mismo procedimiento para la carga activa y pasiva, por mas que se espera un resultado muy similar. En la tabla \ref{table:Ri comp}, se contrasta lo medido,simulado y calculado teóricamente.
 
 \begin{table}[ht]
     \centering
@@ -88,8 +125,10 @@ Se realiza el mismo procedimiento para las dos cargas, por mas que se espera un 
     \caption{Comparación impedancia de entrada}\label{table:Ri comp}
 \end{table}
 
-Para la impedancia de salida se realiza una tecnica prevista en el material didactico de la catedra. Consta en medir la tension a la salida del amplificador a circuito abierto (carga infinita),denominada $V_{open}$. Luego se introduce una carga $R_L$ y se mide la tension $V_L$ a traves de la misma.
-Contando con estos valores se emplea la ecuacion \ref{eq:zout teor}, encontrando asi un valor para la impedancia de salida.
+Se observa entonces que lo medido y lo calculado presentan una semejanza notable. Justificando entonces el razonamiento de que $R_B$ empeora marcadamente la impedancia de entrada del amplificador.
+
+Para la impedancia de salida se realiza una técnica prevista en el material didáctico de la cátedra. Consta en medir la tensión a la salida del amplificador a circuito abierto (carga infinita),denominada $V_{open}$. Luego se introduce una carga $R_L$ y se mide la tensión $V_L$ a través de la misma.
+Contando con estos valores se emplea la ecuación \ref{eq:zout teor}, encontrando asi un valor para la impedancia de salida. Caracterizadas en la tabla \ref{table:Ro comp}
 
 \begin{equation}
     R_O = R_L(\frac{V_{open}}{V_L}-1)
@@ -107,30 +146,43 @@ Contando con estos valores se emplea la ecuacion \ref{eq:zout teor}, encontrando
     \caption{Comparación impedancia de Salida}\label{table:Ro comp}
 \end{table}
 
+Con una diferencia de unos pocos $\Omega$ se vuelve a presenciar la similitud entre la practica y lo teórico. Estos valores de resistencia de salida son una virtud de este circuito, siempre se busca que sea baja a fin de no cargar ni afectar etapas posteriores a la misma. Especialmente en un seguidor de emisor o buffer.
+
 \subsection{Respuesta en Frecuencia}
 
-La respuesta en frecuencia se mide haciendo uso del \textit{Network Analizer} incluido en el equipo de medicion. Debido a su bajo ancho de banda se dificulta medir el polo de alta, ya que el limite de medicion se impone a los $10 MHz$. No obstante una decada antes del polo previsto se comienza a ver un cambio de fase, como es de esperar.
-El polo de baja se observa claramente en el rango determinado. En el grafico REFERENCIA se muestra la respuesta medida.
+La respuesta en frecuencia se mide haciendo uso del \textit{Network Analizer} incluido en el equipo de medición. Debido a su bajo ancho de banda se dificulta medir el polo de alta, ya que el limite de medición se impone a los $10 MHz$. No obstante una decada antes del polo previsto se comienza a ver un cambio de fase, como es de esperar.
+El polo de baja se observa claramente en el rango determinado. En las figuras \ref{fig:frec carga pasiva} y \ref{fig:frec carga activa} se muestra la respuesta medida.
+
+%\begin{figure}[ht]
+%    \begin{subfigure}{.45\textwidth}
+%      \centering
+%      % include first image
+%      \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Pasiva/resp frec.png}  
+%      \caption{Carga Pasiva}
+%      \label{fig:frec carga pasiva}
+ %   \end{subfigure}
+  %  \begin{subfigure}{.45\textwidth}
+   %   \centering
+  % include second image
+%     \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Activa/respfrec.png}  
+%      \caption{Carga Activa}
+%      \label{fig:frec carga activa}
+%    \end{subfigure}
+%    \caption{Respuesta en frecuencia}
+%    \label{fig:resp frec oscilo}
+%    \end{figure}
+
 
 \begin{figure}[ht]
-    \begin{subfigure}{.45\textwidth}
-      \centering
-      % include first image
-      \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Pasiva/resp frec.png}  
-      \caption{Carga Pasiva}
-      \label{fig:frec carga pasiva}
-    \end{subfigure}
-    \begin{subfigure}{.45\textwidth}
-      \centering
-      % include second image
-      \includegraphics[width=.8\linewidth]{4_medicion/figs/2 pasada/Activa/respfrec.png}  
-      \caption{Carga Activa}
-      \label{fig:frec carga activa}
-    \end{subfigure}
-    \caption{Respuesta en frecuencia}
-    \label{fig:resp frec oscilo}
-    \end{figure}
+    \centering
+    \includegraphics[width = 0.8\textwidth]{4_medicion/figs/2 pasada/Pasiva/resp frec.png}
+    \caption{Carga Pasiva}
+    \label{fig:frec carga pasiva}
+\end{figure}
 
-
-
-
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{4_medicion/figs/2 pasada/Activa/respfrec.png}
+    \caption{Carga Activa}
+    \label{fig:frec carga activa}
+\end{figure}
