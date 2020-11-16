@@ -1,0 +1,29 @@
+* C:\Users\ohvic\Documents\ITBA\Electrónica 1\Electro1\Trabajo Práctico 2\LTSPICE\carga_pasiva\incZo.asc
+VCC VCC 0 9
+RS 0 in {Rg}
+RB b1 0 {mc( RB,tolR )}
+Rie1 b1 b2 {mc( hie1, tolR)}
+Rce1 b2 0 {mc( rce1,tolR )}
+CS in b1 {mc( Cs,tolC )}
+Ccb1 b1 0 {mc( Ccb1,tolC )}
+Rie2 b2 e2 {mc( hie2,tolR )}
+Rce2 e2 0 {mc( rce2,tolR )}
+Ccb2 b2 0 {mc( Ccb2,tolC )}
+RE e2 0 {mc( RE,tolR )}
+CL e2 out {mc( CL,tolC )}
+G1 0 b2 b1 b2 {gm1}
+G2 0 e2 b2 e2 {gm2}
+V1 out 0 AC 1
+* Testbench
+* Parameters
+.param Rg=50 RB=1k RE=0.9k RL=100k Cs=100n CL=100n
+.param hfe1=150 hie1=130k rce1=2.028Meg Ccb1=3.2p
+.param hfe2=290 hie2=977 rce2=6.94k Ccb2=5.0p
+.param tolR=0 tolC=0
+* Sim Setup
+;tran 0 1m 0 1n
+;step param run 1 100 1
+.ac dec 50 100 1000Meg
+.param gm1=1.16m gm2=298m
+.backanno
+.end
