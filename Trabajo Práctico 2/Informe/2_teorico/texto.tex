@@ -234,6 +234,29 @@ Conociendo las siguientes relaciones, aplicando pasaje a nivel de corriente se o
     R_i = h_{ie1} + (1 + h_{fe1})\cdot h_{ie2} + (1 + h_{fe1})(1+h_{fe2})\cdot R_d
     \label{eq:R_i}
 \end{equation}
+\vspace{2mm}
+
+Como se puede observar de la ecuación anterior, se espera una gran impedancia de entrada para nuestro componente activo,
+del orden los cientos de $K\Omega$.
+\vspace{2mm}
+
+Por otro lado, la impedancia de entrada del amplificador estará dada por:
+\begin{equation}
+    R_{ia}=R_i \parallel R_B
+    \label{R_ia}
+\end{equation}
+De la ecuación anterior se puede observar la importancia de $R_B$ en el circuito, ya que tomar un valor muy bajo 
+me traería aparejada una gran pérdida en la impedancia de entrada de mi dispositivo. Sin embargo, también es 
+necesario considerar que aumentar $R_B$ indiscriminadamente tiene un efecto colateral en la corriente de emisor 
+de $Q_2$ dada por la ecuación[\ref{I_E}]. De esta manera, ya no podríamos asumir un error despreciable y la 
+ecuación [\ref{pol_I_E2}] ya no sería válida. \par 
+Por otro lado, la impedancia de entrada del sistema estará dada por:
+\begin{equation}
+    R_{is}=\frac{R_{ia}}{R_{ia}+R_s}
+    \label{R_is}
+\end{equation}
+En un principio, se considerará a $R_s$ como la impedancia de un generador estándar de $50\Omega$. Luego, para medir 
+$R_{ia}$ en la práctica se colocará una resistencia mayor.
 
 \subsection{Ganancia de Tensión}
 A partir de la ecuación \eqref{eq:R_i}, y observando las siguientes relaciónes, se obtuvo la ganancia de tensión $\Delta_V$.
@@ -245,19 +268,30 @@ A partir de la ecuación \eqref{eq:R_i}, y observando las siguientes relaciónes
 
 \begin{align}
     \Delta_V &= \frac{v_o}{v_i} = \frac{v_o}{i_{b2}}\cdot \frac{i_{b2}}{i_{b1}}\cdot \frac{i_{b1}}{v_i} = (h_{fe2}+1)\cdot i_{b2}\cdot R_d \cdot (h_{fe1}+1)\cdot 1/ R_i \\
+    \vspace{2mm}
     \Delta_V &= \frac{R_d(1+h_{fe1})(1+h_{fe2})}{R_d(1+h_{fe1})(1+h_{fe2}) + h_{ie1} + h_{ie2}(1+h_{fe2})}
 \end{align}
-Sacando factor común se obtuvo que
+
+Sacando factor común se obtuvo que:
 \begin{equation}
     \Delta_V = \frac{1}{\frac{h_{ie1} + h_{ie2}(1+h_{fe2})}{R_d(1+h_{fe1})(1+h_{fe2})} + 1 }
     \label{eq:Av}
 \end{equation}
 
-Para poder considerar al circuito como seguidor de emisor, se debe cumplir que, observando la expresión \eqref{eq:Av}, se cumpla la relación
-
+Para poder considerar al circuito como seguidor de emisor($\Delta V \approx 1$), 
+se debe cumplir que, observando la expresión \eqref{eq:Av}, se cumpla la relación
 \begin{equation}
     R_d(1+h_{fe1})(1+h_{fe2}) >> h_{ie1} + h_{ie2}(1+h_{fe2})
 \end{equation}
+
+Por otro lado, la ganancia de tensión del sistema va a estar dada por:
+
+\begin{equation}
+    \Delta V_s = \frac{V_o}{V_s} = \frac{V_o}{V_i} \cdot \frac{V_i}{V_s} = \Delta V= \frac{R_{ia}}{R_{ia}+R_s}
+\end{equation}
+
+De la misma se desprende la importancia que tendrá $R_B$ como fue planteado en la sección anterior, intentando tomar valores 
+tal que podamos mantener el comportamiento deseado.
 
 \subsection{Ganancia de Corriente}
 
@@ -267,11 +301,14 @@ Se obtuvo que la ganancia de corriente estará dada por
     \Delta_i = (1+h_{fe1})(1+h_{fe2})
 \end{equation}
 
-Para la ganancia de corriente del sistema, se transformó la fuente de tensión por una fuente de corriente correspondiente, donde se observó una relación de divisor de corriente entre la corriente $i_{b1}$ y $i_s$. Con esta relación se obtuvo finalmente la ganancia de corriente del sistema.
+Para la ganancia de corriente del sistema, se transformó la fuente de tensión por una fuente de corriente equivalente de valor $i_s=\frac{V_s}{R_s}$, 
+donde se observó una relación de divisor de corriente entre $i_{b1}$ e $i_s$. 
 
 \begin{equation*}
     i_{b1} = i_s\cdot \frac{R_S\parallel R_B}{R_i + R_S\parallel R_B}
 \end{equation*}
+
+Con esta relación se obtuvo finalmente la ganancia de corriente del sistema.
 
 \begin{equation}
     \Delta_{is} = \Delta_i \cdot \frac{R_S\parallel R_B}{R_i + R_S\parallel R_B}
@@ -279,7 +316,9 @@ Para la ganancia de corriente del sistema, se transformó la fuente de tensión 
 
 \subsection{Impedancia de Salida}
 
-Para el cálculo de la $r_o$ se pasivó las fuentes independientes, se colocó una señal de prueba a la salida y se consideró nuevamente las resistencias $r_{ce}=1/h_{oe}$ de cada transistor.
+Para el cálculo de la $r_o$ se realizó el procedimiento estándar de pasivar las fuentes independientes, 
+colocar una señal de prueba a la salida y considerar nuevamente las resistencias $r_{ce}=1/h_{oe}$ de cada transistor.
+
 
 \begin{figure}[ht]
     \centering
@@ -304,15 +343,29 @@ Para el cálculo de la $r_o$ se pasivó las fuentes independientes, se colocó u
     \label{fig:incremental_ro}
 \end{figure}
 
+Al tratarse de un acople de CC se sabe que el $r_o$ para dicha configuración está dado por:
+
+\begin{align}
+    r_{o1}'&= \frac{R_S\parallel R_B + h_{ie1}}{1 + h_{fe1}} 
+\end{align}
+
+Consiguientemente, se llega a las siguientes expresiones donde se vuelve a aplicar la $r_o$ de un CC para el 
+circuito equivalente:
+
 \begin{align*}
-    r_{o1}'&= \frac{R_S\parallel R_B + h_{ie1}}{1 + h_{fe1}} \\
     r_{o1} &= r_{o1}' \parallel r_{ce1} \\
     r_{o2}'&= \frac{r_{o1} + h_{ie2}}{1 + h_{fe2}}
 \end{align*}
 
+
+
+Obteniéndose finalmente la expresión para la $r_o$ de la configuración Darlington.
+
 \begin{equation}
     r_o = r_{o2} = r_{o2}' \parallel r_{ce2}
 \end{equation}
+
+La impedancia de salida del sistema estará dada por:
 
 \begin{equation}
     r_{oa} = r_{o} \parallel R_{E}
@@ -358,6 +411,8 @@ Como se observa en la figura \ref{fig:incremental_LF}, el capacitor $C_S$ ve una
     f_L = \frac{1}{2\pi}\left(\frac{1}{\tau_1}+\frac{1}{\tau_2}\right)
     \label{eq:fL}
 \end{equation}
+
+Cabe notar que en el circuito de carga activa, el capacitor $C_L$ no está presente; por lo tanto, solo se conosideraron los efectos de solo el capacitor $C_S$ para su respuesta en frecuencia.
 
 \subsubsection{Alta Frecuencia}
 En el caso de las altas frecuencias, las capacitancias de los transistores fueron consideradas, y las del circuito externo amplificador fueron pasivadas como corto circuito.
