@@ -82,6 +82,7 @@ Considerando que por la configuración la tensión $V_{GS}$ será la misma para 
 
 \begin{equation}
     I_o = \frac{(W/L)_3}{(W/L)_4} \cdot I_{ref}
+    \label{eq:io func iref}
 \end{equation}
 
 Por otro lado, puede diseñarse la $I_{ref}$ recorriendo la malla de $Q_4$ y resolviendo $V_{GS}$ para la $I_D = I_{ref}$
@@ -246,10 +247,10 @@ Por otro lado, la impedancia de entrada del amplificador estará dada por:
     \label{R_ia}
 \end{equation}
 De la ecuación anterior se puede observar la importancia de $R_B$ en el circuito, ya que tomar un valor muy bajo 
-me traería aparejada una gran pérdida en la impedancia de entrada de mi dispositivo. Sin embargo, también es 
-necesario considerar que aumentar $R_B$ indiscriminadamente tiene un efecto colateral en la corriente de emisor 
-de $Q_2$ dada por la ecuación[\ref{I_E}]. De esta manera, ya no podríamos asumir un error despreciable y la 
-ecuación [\ref{pol_I_E2}] ya no sería válida. \par 
+me traería aparejada una gran pérdida en la impedancia de entrada del dispositivo. Sin embargo, también es 
+necesario considerar que aumentar $R_B$  tiene un efecto colateral en la corriente de emisor 
+de $Q_2$ dada por la ecuación[\ref{eq:pol_I_E2}]. De esta manera, ya no podríamos asumir un error despreciable y la 
+ecuación [\ref{eq:pol_I_E2}] ya no sería válida. \par 
 Por otro lado, la impedancia de entrada del sistema estará dada por:
 \begin{equation}
     R_{is}=\frac{R_{ia}}{R_{ia}+R_s}
@@ -287,7 +288,7 @@ se debe cumplir que, observando la expresión \eqref{eq:Av}, se cumpla la relaci
 Por otro lado, la ganancia de tensión del sistema va a estar dada por:
 
 \begin{equation}
-    \Delta V_s = \frac{V_o}{V_s} = \frac{V_o}{V_i} \cdot \frac{V_i}{V_s} = \Delta V= \frac{R_{ia}}{R_{ia}+R_s}
+    \Delta V_s = \frac{V_o}{V_s} = \frac{V_o}{V_i} \cdot \frac{V_i}{V_s} = \Delta V \frac{R_{ia}}{R_{ia}+R_s}
 \end{equation}
 
 De la misma se desprende la importancia que tendrá $R_B$ como fue planteado en la sección anterior, intentando tomar valores 
