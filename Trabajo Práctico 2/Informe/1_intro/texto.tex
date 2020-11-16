@@ -99,7 +99,7 @@ En contraste, también se analizó el mismo circuito con una carga pasiva, como 
             (Q1.B) to[R=$R_B$,*-] ++(0,1.5) --(Vcc)
             (Q1.B) to[C=$C_i$] ++(-2,0) to[R=$R_s$] ++(0,-2) to[sV,l=$v_s$] ++(0,-2) node[ground]{}
             (Q2.E) to[short,-o] (7,2.5) node[anchor=west](vo){$v_o$} to[short] (Q3.D)
-            (7,2.5) to[short] ++(-2,0) to[R=$R_L$] ++(0,-2) node[ground]{}
+            (7,2.5) to[C,l=$C_L$] ++(-2,0) to[R=$R_L$] ++(0,-2) node[ground]{}
             ;
         \end{circuitikz}
         \caption{Par Darlington con Carga Activa}
