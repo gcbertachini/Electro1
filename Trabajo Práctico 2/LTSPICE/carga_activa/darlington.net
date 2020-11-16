@@ -1,0 +1,42 @@
+* D:\Disco HDD\Documentos\Facultad\ITBA\4° año\2° cuatri\22.59 - Electrónica I\Cursada\Trabajos Prácticos\Electro1\Trabajo Práctico 2\LTSPICE\carga_activa\darlington.asc
+Q1 N004 vin N007 0 BC547B
+Q2 N004 N007 N010 0 BC547B
+R1 N004 vin 1k
+Vcc N004 0 9
+Ci vin N006 100n
+Vs N005 0 SINE(0 10m 10k) AC 1
+Rs N006 N005 50
+M1 N008 N008 0 0 BS170
+M2 N010 N008 0 0 BS170
+Rref N004 N008 745
+CL N010 N009 100n
+RL N009 0 100k
+Vs1 N001 0 SINE(0 10m 10k) AC 1
+RS_ Vi N001 {RS_}
+RB 0 Vi {RB}
+R§hie1 Vi N002 {hie1}
+RD N003 0 {RD}
+I2 0 N003 {I2}
+I1 0 N002 {I1}
+R§hie2 N003 N002 {hie2}
+.model NPN NPN
+.model PNP PNP
+.lib C:\Users\germa\Documents\LTspiceXVII\lib\cmp\standard.bjt
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\germa\Documents\LTspiceXVII\lib\cmp\standard.mos
+;ac dec 100 0.1 1G
+* Modelo incremental
+.param RS_=50
+.param RB=1k
+.param RE=900
+.param RL=100K
+.param RD=900
+.param hie1=130084
+.param hie2=445
+.param I1=29.6u
+.param I2=8.64m
+;op
+.tran 1u
+.backanno
+.end
