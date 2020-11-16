@@ -21,6 +21,6 @@ V1 N001 0 SINE(0 10m 5k) AC 1
 .param tol_RB=0.5
 .param tol_RL=0.05
 .param tol_RE=0.05
-.step param run 1 100 1
+;step param run 1 100 1
 .backanno
 .end
