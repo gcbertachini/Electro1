@@ -21,8 +21,8 @@ Ccb2 = 3.5e-12;
     % Transistor MOSFET
 Iref = 0.008636665916521*(hFE2+1)/hFE2;
 VDD = Vcc;
-VTH = 2;
-K = 0.03;
+VTH = 3;
+K = 0.0315;
 
 VGS = VTH + sqrt(Iref/K);
 Rref = (VDD-VGS)/Iref;
