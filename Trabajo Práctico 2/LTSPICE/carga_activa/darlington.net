@@ -32,7 +32,7 @@ Vop1 0 N009 SINE(0 50m 10k) AC 1
 .model NMOS NMOS
 .model PMOS PMOS
 .lib C:\Users\germa\Documents\LTspiceXVII\lib\cmp\standard.mos
-.ac dec 100 100 10e6
+.ac dec 100 100 10e9
 .param RS_=50
 .param RB=1k
 .param RE=900

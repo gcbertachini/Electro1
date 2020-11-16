@@ -1,18 +1,18 @@
 * D:\Disco HDD\Documentos\Facultad\ITBA\4° año\2° cuatri\22.59 - Electrónica I\Cursada\Trabajos Prácticos\Electro1\Trabajo Práctico 2\LTSPICE\carga_pasiva_montecarlo\darlington.asc
-Q1 Vcc vi N003 0 BC547B
+Q1 Vcc N002 N003 0 BC547B
 Q2 Vcc N003 N004 0 BC547B
-RB Vcc vi {mc({RB},tol_RB)}
+RB Vcc N002 {mc({RB},tol_RB)}
 Vcc Vcc 0 9
 RE N004 0 {mc({RE},tol_RE)}
-C1 vi N002 100n
-R1 N002 N001 {mc({R1},tol_R1)}
+C1 N002 vi 100n
+R1 vi N001 {mc({R1},tol_R1)}
 RL 0 vout {mc({RL},tol_RL)}
 C2 N004 vout 100n
 V1 N001 0 SINE(0 10m 5k) AC 1
 .model NPN NPN
 .model PNP PNP
 .lib C:\Users\germa\Documents\LTspiceXVII\lib\cmp\standard.bjt
-.ac dec 100 .1 1G
+.ac dec 100 100 10e9
 .param RB 1k
 .param R1 50
 .param RL 100k
