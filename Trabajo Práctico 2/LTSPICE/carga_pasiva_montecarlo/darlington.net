@@ -12,7 +12,7 @@ V1 N001 0 SINE(0 10m 5k) AC 1
 .model NPN NPN
 .model PNP PNP
 .lib C:\Users\germa\Documents\LTspiceXVII\lib\cmp\standard.bjt
-.ac dec 100 100 10e9
+.ac dec 100 1k 10e9
 .param RB 1k
 .param R1 50
 .param RL 100k
