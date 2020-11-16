@@ -47,15 +47,9 @@ En el circuito con Carga Pasiva, se resolvió analizando las mallas de entrada d
 
 \begin{align*}
     & V_{CC}-I_{B1}R_{B}-V_{BEon1}-V_{BEon2}-I_{E2}R_{E}=0 \\
-    \vspace{1mm}
     & I_{E2} = \left(1 + h_{FE1}\right)\left(1 + h_{FE2}\right) I_{B1} \\
-
-\end{align*}
-
-\begin{equation}
     \Rightarrow & I_{E2} = \frac{V_{CC}-V_{BEon1}-V_{BEon2}}{R_E+\frac{R_B}{\left(1 + h_{FE1}\right)\left(1 + h_{FE2}\right)}}
-    \label{I_E}
-\end{equation}
+\end{align*}
 
 Considerando que la influencia de de $R_B$ será despreciable frente a la de $R_E$, y que ambos transistores tienen la misma $V_{BEon}$ se puede aproximar \eqref{eq:pol_I_E2}. Luego se pueden obtener las $I_{CQ}$ de cada transistor.
 
