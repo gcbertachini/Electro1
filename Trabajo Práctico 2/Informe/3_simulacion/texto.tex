@@ -109,21 +109,49 @@ Para un circuito con carga pasiva se obtiene la siguiente ganancia de tensión.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{3_simulacion/fig/ganancia_pasiva.png}
+    \includegraphics[width=0.95\textwidth]{3_simulacion/fig/ganancia_pasiva_ampli.png}
     \label{mediciones_pol_activa}
     \caption{Ganancia de tensión -  Carga pasiva}
 \end{figure}
 
-En esta es la primera simulación en la que podemos ver reflejado el modelo visto en 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{3_simulacion/fig/ganancia_pasiva.png}
+    \label{mediciones_pol_activa}
+    \caption{Ganancia de tensión del sistema -  Carga pasiva}
+\end{figure}
+
+Esta es la primera simulación en la que podemos ver reflejado el modelo visto en 
 la materia respecto a la frecuencias medias, rango de validez asumido. En nuestra simulación,
-dicho rango iría, según cierta rigurosidad, entre $10 KHz$ y $10 MHz$, rango de 
+dicho rango iría, según cierta rigurosidad, entre $10 KHz$ y $10 MHz$.
+
+Para un circuito con carga activa se obtiene la siguiente ganancia de tensión.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{3_simulacion/fig/ganancia_activa_ampli.png}
+    \label{mediciones_pol_activa}
+    \caption{Ganancia de tensión -  Carga activa}
+\end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{3_simulacion/fig/ganancia_activa.png}
     \label{mediciones_pol_activa}
-    \caption{Ganancia de tensión -  Carga activa}
+    \caption{Ganancia de tensión del sistema -  Carga activa}
 \end{figure}
+
+Las ganancias de tensión simuladas resultan ser las esperadas según el desarrollo teórico.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+                        & Carga activa & Carga pasiva  \\ \hline
+    $\Delta V$        & $0.998$   & $0.991$    \\ \hline
+    $\Delta V_s$        & $0.945$   & $0.903$  \\ \hline
+    \end{tabular}
+    \end{table}
+
 
 \subsection{Ganancia de Corriente}
 
@@ -145,28 +173,55 @@ dicho rango iría, según cierta rigurosidad, entre $10 KHz$ y $10 MHz$, rango d
 
 
 \subsection{Impedancias de Entrada y Salida}
-Para la impedancia de entrada se realiza la siguiente simulación:
+Primero, se busca la impedancia de entrada para cada configuración.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/circuito_rin.png}
+    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/impedancia_entrada_ampli_pasiva.png}
     \label{mediciones_pol_activa}
-    \caption{Mediciones - Circuito de polarización con carga activa}
+    \caption{Impedancia de entrada del amplificador - Carga pasiva}
 \end{figure}
-Obteniéndose los siguientes valores para la impedancia de entrada:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/impedancia_entrada_ampli_activa.png}
+    \label{mediciones_pol_activa}
+    \caption{Impedancia de entrada del amplificador - Carga activa}
+\end{figure}
+
+Luego, se calcula la impedancia de entrada del amplificador.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{3_simulacion/fig/rin.png}
     \label{mediciones_pol_activa}
-    \caption{Mediciones - Circuito de polarización con carga activa}
+    \caption{Impedancia de entrada del amplificador}
 \end{figure}
 
-Para la impedancia de salida se realiza la siguiente simulación:
+La impedancia de entrada simulada es consistente con la esperada ya que se obtiene el valor de $R_B$. Se obtiene lo mismo 
+tanto para carga activa como pasiva. Se observa una mínima variación antes de la zona de frecuencias medias. \par 
+
+
+Para la impedancia de salida se realiza la siguiente simulación, pasivando las fuentes independientes 
+y utilizando una tensión de prueba.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{3_simulacion/fig/circuito_ro.png}
     \label{mediciones_pol_activa}
     \caption{Mediciones - Circuito para medir impedancia de salida}
 \end{figure}
+
+De la misma se obtuvo el siguiente gráfico para la impedancia de salida en función de la frecuencia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{3_simulacion/fig/ro.png}
+    \label{mediciones_pol_activa}
+    \caption{Impedancia de salida en función de la frecuencia}
+\end{figure}
+Como $r_o$ no depende de $R_E$ ni el equivalente de la fuente de corriente, se obtiene lo mismo para ambas 
+configuraciones. Se observa en la zona de frecuencias medias una impedancia de aproximadamente $6 \Omega$, 
+consistente con lo expresado en la tabla [\ref{tab:vals_teo}].
 
 \subsection{Respuesta en Frecuencia}
 \begin{figure}[H]
