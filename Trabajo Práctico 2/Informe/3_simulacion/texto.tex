@@ -11,7 +11,7 @@ un análisis de Montecarlo para poder observar las sensibilidades del circuito.
 Primeramente, se realiza la simulación para la polarización del circuito con una carga pasiva de $R_E$ = $900 \Omega$.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{3_simulacion/fig/circuito_pol_pas.png}
+    \includegraphics[width=0.35\textwidth]{3_simulacion/fig/circuito_pol_pas.png}
     \label{circuito_pol_pas}
     \caption{Circuito de Polarización configurado en LTSpiceXVII}
 \end{figure}
@@ -20,7 +20,7 @@ Se obtienen los siguientes valores:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/pol_pasiva.png}
+    \includegraphics[width=0.5\textwidth]{3_simulacion/fig/pol_pasiva.png}
     \label{mediciones_pol_pas}
     \caption{Mediciones - Circuito de polarización con carga pasiva}
 \end{figure}
@@ -46,7 +46,7 @@ Luego, se calcula  para la polarización del circuito con una carga activa imple
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{3_simulacion/fig/circuito_pol_act.png}
+    \includegraphics[width=0.35\textwidth]{3_simulacion/fig/circuito_pol_act.png}
     \label{circuito_pol_activa}
     \caption{Circuito de Polarización configurado en LTSpiceXVII}
 \end{figure}
@@ -55,9 +55,9 @@ Se obtienen los siguientes valores:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/pol_activa.png}
+    \includegraphics[width=0.5\textwidth]{3_simulacion/fig/pol_activa.png}
     \label{mediciones_pol_activa}
-    \caption{Punto de operación del circuito en CC}
+    \caption{Mediciones - Circuito de polarización con carga activa}
 \end{figure}
 A continuación se presenta una tabla con las diferencias entre el modelo teórico y simulado:
 
@@ -76,24 +76,53 @@ A continuación se presenta una tabla con las diferencias entre el modelo teóri
 
 
 \section{Parámetros de Pequeña Señal}
-Lorem ipsum
+Los parámetros de pequeña señal obtenidos con las mediciones se presentan en la siguiente tabla:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|r|r|r|}
+        \hline
+        \multirow{2}{*}{} & \multicolumn{2}{c|}{Carga Pasiva} & \multicolumn{2}{c|}{Carga Activa} \\ \cline{2-5} 
+         & $Q_1$ & $Q_2$ & $Q_1$ & $Q_2$ \\ \hline
+        $h_{ie} (\si{\kilo\ohm})$ & $121.69$ & $0.488$ & $123.33$ & $0.454$ \\
+        $h_{oe} (\si{\micro\siemens})$ & $0.527$ & $143$ & $0.520$ & $141.33$ \\\hline
+    \end{tabular}
+    \caption{Valores  obtenidos en base a simulación}
+    \label{tab:vals_teo}
+\end{table}
+
 \section{Circuito Incremental}
-Lorem ipsum
-\subsection{Ganancia de Tensión}
-Para un circuito con carga pasiva se obtiene la siguiente ganancia de tensión.
+El siguiente paso será realizar el circuito incremental del circuito desde el cual podremos obtener diversos parámetros 
+característicos de nuestro circuito. Posteriormente, se presente un estudio de Montecarlo para ver el efecto de 
+las sensibilidades.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/ganancia_pasiva.png}
+    \includegraphics[width=0.95\textwidth]{3_simulacion/fig/modelo_incremental.png}
     \label{mediciones_pol_activa}
-    \caption{Punto de operación del circuito en CC}
+    \caption{Modelo incremental implementado}
 \end{figure}
 
+\subsection{Ganancia de Tensión}
+
+Para un circuito con carga pasiva se obtiene la siguiente ganancia de tensión.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/ganancia_activa.png}
+    \includegraphics[width=0.95\textwidth]{3_simulacion/fig/ganancia_pasiva.png}
     \label{mediciones_pol_activa}
-    \caption{Punto de operación del circuito en CC}
+    \caption{Ganancia de tensión -  Carga pasiva}
+\end{figure}
+
+En esta es la primera simulación en la que podemos ver reflejado el modelo visto en 
+la materia respecto a la frecuencias medias, rango de validez asumido. En nuestra simulación,
+dicho rango iría, según cierta rigurosidad, entre $10 KHz$ y $10 MHz$, rango de 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{3_simulacion/fig/ganancia_activa.png}
+    \label{mediciones_pol_activa}
+    \caption{Ganancia de tensión -  Carga activa}
 \end{figure}
 
 \subsection{Ganancia de Corriente}
