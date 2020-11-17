@@ -8,7 +8,7 @@ un análisis de Montecarlo para poder observar las sensibilidades del circuito.
 
 \subsection{Carga Pasiva}
 
-Primeramente, se realiza la simulación para la polarización del circuito con una carga pasiva de $R_E$ = $900 \Omega$.
+Primeramente, se realizó la simulación para la polarización del circuito con una carga pasiva de $R_E$ = $900 \Omega$.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.35\textwidth]{3_simulacion/fig/circuito_pol_pas.png}
@@ -88,7 +88,7 @@ Los parámetros de pequeña señal obtenidos con las mediciones se presentan en 
         $h_{oe} (\si{\micro\siemens})$ & $0.527$ & $143$ & $0.520$ & $141.33$ \\\hline
     \end{tabular}
     \caption{Valores  obtenidos en base a simulación}
-    \label{tab:vals_teo}
+    \label{tab:vals_teo_2}
 \end{table}
 
 \section{Circuito Incremental}
@@ -157,18 +157,11 @@ Las ganancias de tensión simuladas resultan ser las esperadas según el desarro
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/ganancia_corriente_pasiva.png}
+    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/tb1_Ai.png}
     \label{mediciones_pol_activa}
     \caption{Punto de operación del circuito en CC}
 \end{figure}
 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/ganancia_corriente_activa.png}
-    \label{mediciones_pol_activa}
-    \caption{Punto de operación del circuito en CC}
-\end{figure}
 
 
 
@@ -223,38 +216,11 @@ Como $r_o$ no depende de $R_E$ ni el equivalente de la fuente de corriente, se o
 configuraciones. Se observa en la zona de frecuencias medias una impedancia de aproximadamente $6 \Omega$, 
 consistente con lo expresado en la tabla [\ref{tab:vals_teo}].
 
-\subsection{Respuesta en Frecuencia}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/rta_frec_pasiva.png}
-    \label{mediciones_pol_activa}
-    \caption{Punto de operación del circuito en CC}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\textwidth]{3_simulacion/fig/rta_frec_activa.png}
-    \label{mediciones_pol_activa}
-    \caption{Punto de operación del circuito en CC}
-\end{figure}
 
 
 \newpage
 \section{Circuito Incremental}
 Se simuló el comportamiento del circuito incremental primero con todos los componentes y como comparación con solo el modelo de pequeña señal.
-
-\begin{figure}[ht]
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{3_simulacion/fig/cir_comp_p.png}
-        \caption{Circuito completo con carga pasiva}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{3_simulacion/fig/cir_comp_a.png}
-        \caption{Circuito completo con carga activa}
-    \end{minipage}
-\end{figure}
 
 \begin{figure}[ht]
     \centering
