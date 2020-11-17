@@ -16,7 +16,7 @@ Primeramente, se realizó la simulación para la polarización del circuito con 
     \caption{Circuito de Polarización configurado en LTSpiceXVII}
 \end{figure}
 
-Se obtienen los siguientes valores:
+Se obtuvieron los siguientes valores:
 
 \begin{figure}[H]
     \centering
@@ -25,7 +25,7 @@ Se obtienen los siguientes valores:
     \caption{Mediciones - Circuito de polarización con carga pasiva}
 \end{figure}
 
-A continuación se presenta una tabla con las diferencias entre el modelo teórico y simulado:
+A continuación, se presenta una tabla con las diferencias entre el modelo teórico y simulado:
 
 \begin{table}[H]
     \centering
@@ -42,7 +42,7 @@ A continuación se presenta una tabla con las diferencias entre el modelo teóri
 
 \subsection{Carga Activa}
 
-Luego, se calcula  para la polarización del circuito con una carga activa implementada con un espejo de corriente.
+Luego, se calculó  para la polarización del circuito con una carga activa implementada con un espejo de corriente.
 
 \begin{figure}[H]
     \centering
@@ -51,7 +51,7 @@ Luego, se calcula  para la polarización del circuito con una carga activa imple
     \caption{Circuito de Polarización configurado en LTSpiceXVII}
 \end{figure}
 
-Se obtienen los siguientes valores:
+Se obtuvieron los siguientes valores:
 
 \begin{figure}[H]
     \centering
@@ -59,7 +59,8 @@ Se obtienen los siguientes valores:
     \label{mediciones_pol_activa}
     \caption{Mediciones - Circuito de polarización con carga activa}
 \end{figure}
-A continuación se presenta una tabla con las diferencias entre el modelo teórico y simulado:
+
+A continuación, se presenta una tabla con las diferencias entre el modelo teórico y simulado:
 
 \begin{table}[H]
     \centering
@@ -93,7 +94,7 @@ Los parámetros de pequeña señal obtenidos con las mediciones se presentan en 
 
 \section{Circuito Incremental}
 El siguiente paso será realizar el circuito incremental del circuito desde el cual podremos obtener diversos parámetros 
-característicos de nuestro circuito. Posteriormente, se presente un estudio de Montecarlo para ver el efecto de 
+característicos de nuestro circuito. Posteriormente, se presenta un estudio de Montecarlo para ver el efecto de 
 las sensibilidades.
 
 \begin{figure}[H]
@@ -105,7 +106,7 @@ las sensibilidades.
 
 \subsection{Ganancia de Tensión}
 
-Para un circuito con carga pasiva se obtiene la siguiente ganancia de tensión.
+Para un circuito con carga pasiva se obtuvo la siguiente ganancia de tensión.
 
 \begin{figure}[H]
     \centering
@@ -121,11 +122,14 @@ Para un circuito con carga pasiva se obtiene la siguiente ganancia de tensión.
     \caption{Ganancia de tensión del sistema -  Carga pasiva}
 \end{figure}
 
-Esta es la primera simulación en la que podemos ver reflejado el modelo visto en 
+Esta es la primera simulación en la que se pudo ver reflejado el modelo visto en 
 la materia respecto a la frecuencias medias, rango de validez asumido. En nuestra simulación,
 dicho rango iría, según cierta rigurosidad, entre $10 KHz$ y $10 MHz$.
 
-Para un circuito con carga activa se obtiene la siguiente ganancia de tensión.
+Se observa un error importante respecto a lo esperado para la ganancia de tensión del sistema, que debería ser según
+estimaciones teóricas del orden de $0.95$. Este punto será revisado para la presentación.
+
+Para un circuito con carga activa se obtuvo la siguiente ganancia de tensión.
 
 \begin{figure}[H]
     \centering
@@ -141,7 +145,7 @@ Para un circuito con carga activa se obtiene la siguiente ganancia de tensión.
     \caption{Ganancia de tensión del sistema -  Carga activa}
 \end{figure}
 
-Las ganancias de tensión simuladas resultan ser las esperadas según el desarrollo teórico.
+Las ganancias de tensión simuladas resultan ser similares a las esperadas según el desarrollo teórico.
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|}
@@ -154,7 +158,7 @@ Las ganancias de tensión simuladas resultan ser las esperadas según el desarro
 
 
 \subsection{Ganancia de Corriente}
-
+Se realizó la simulación para obtener la ganancia de corriente.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{3_simulacion/fig/tb1_Ai.png}
@@ -163,10 +167,8 @@ Las ganancias de tensión simuladas resultan ser las esperadas según el desarro
 \end{figure}
 
 
-
-
 \subsection{Impedancias de Entrada y Salida}
-Primero, se busca la impedancia de entrada para cada configuración.
+Primero, se buscó la impedancia de entrada para cada configuración.
 
 \begin{figure}[H]
     \centering
@@ -182,7 +184,7 @@ Primero, se busca la impedancia de entrada para cada configuración.
     \caption{Impedancia de entrada del amplificador - Carga activa}
 \end{figure}
 
-Luego, se calcula la impedancia de entrada del amplificador.
+Luego, se calculó la impedancia de entrada del amplificador.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{3_simulacion/fig/rin.png}
@@ -190,11 +192,11 @@ Luego, se calcula la impedancia de entrada del amplificador.
     \caption{Impedancia de entrada del amplificador}
 \end{figure}
 
-La impedancia de entrada simulada es consistente con la esperada ya que se obtiene el valor de $R_B$. Se obtiene lo mismo 
-tanto para carga activa como pasiva. Se observa una mínima variación antes de la zona de frecuencias medias. \par 
+La impedancia de entrada simulada fue consistente con la esperada ya que se obtuvo el valor de $R_B$,
+tanto para carga activa como pasiva. Se observó una mínima variación antes de la zona de frecuencias medias. \par 
 
 
-Para la impedancia de salida se realiza la siguiente simulación, pasivando las fuentes independientes 
+Para la impedancia de salida se realizó la siguiente simulación, pasivando las fuentes independientes 
 y utilizando una tensión de prueba.
 
 \begin{figure}[H]
@@ -212,8 +214,9 @@ De la misma se obtuvo el siguiente gráfico para la impedancia de salida en func
     \label{mediciones_pol_activa}
     \caption{Impedancia de salida en función de la frecuencia}
 \end{figure}
-Como $r_o$ no depende de $R_E$ ni el equivalente de la fuente de corriente, se obtiene lo mismo para ambas 
-configuraciones. Se observa en la zona de frecuencias medias una impedancia de aproximadamente $6 \Omega$, 
+
+Como $r_o$ no depende de $R_E$ ni el equivalente de la fuente de corriente, se obtuvo lo mismo para ambas 
+configuraciones. Se observó en la zona de frecuencias medias una impedancia de aproximadamente $6 \Omega$, 
 consistente con lo expresado en la tabla [\ref{tab:vals_teo}].
 
 
